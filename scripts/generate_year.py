@@ -31,12 +31,13 @@ def generate_year_svg(data):
     cell_spacing  = 3
     left_padding  = 38
     top_padding   = 42
+    right_padding = 22
     
-    # Dynamic width/height from actual data
+    # Tight width/height from actual data — no artificial minimum
     num_weeks = len(weeks) if weeks else 53
     graph_w   = left_padding + num_weeks * (cell_size + cell_spacing)
     graph_h   = top_padding  + 7 * (cell_size + cell_spacing)
-    width     = max(graph_w + 20, 760)
+    width     = graph_w + right_padding
     height    = graph_h + 50  # space for legend + timestamp
     
     dark = THEME["dark"]
