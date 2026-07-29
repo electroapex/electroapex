@@ -1,10 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 775 350" width="100%" height="100%" style="border-radius: 8px;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 775 650" width="100%" height="100%" style="border-radius: 8px;">
+<defs>
+
+    <linearGradient id="card-bg-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="var(--bg-card)" stop-opacity="0.95" />
+        <stop offset="100%" stop-color="var(--bg-card)" stop-opacity="0.6" />
+    </linearGradient>
+    <linearGradient id="card-border-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.2)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+    </linearGradient>
+        
+
+    <linearGradient id="badge-glass-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+    </linearGradient>
+    <linearGradient id="badge-edge-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.4)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+    </linearGradient>
+    <filter id="badge-shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000" flood-opacity="0.8"/>
+    </filter>
+    <linearGradient id="connection-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="var(--accent)" />
+        <stop offset="100%" stop-color="var(--accent-purple)" />
+    </linearGradient>
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--accent)" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.3"/>
+    </pattern>
+    <linearGradient id="scannerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="transparent" />
+        <stop offset="50%" stop-color="var(--accent)" stop-opacity="0.5" />
+        <stop offset="100%" stop-color="transparent" />
+    </linearGradient>
+    
+</defs>
 
 <style>
 
 @font-face {
     font-family: 'JetBrains Mono';
-    src: url(data:font/woff2;charset=utf-8;base64,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) format('woff2');
+    src: url(data:font/woff2;charset=utf-8;base64,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) format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -48,10 +85,11 @@ body {
 }
 
 .card {
-    fill: var(--bg-card);
-    stroke: var(--border);
-    stroke-width: 1px;
-    rx: 8px;
+    fill: url(#card-bg-grad);
+    stroke: url(#card-border-grad);
+    stroke-width: 1.5px;
+    rx: 12px;
+    filter: url(#shadow3d);
 }
 
 .title {
@@ -77,323 +115,1023 @@ body {
         font-size: 14px;
         font-weight: 700;
         fill: var(--accent);
+        filter: drop-shadow(0px 0px 4px var(--accent-purple));
     }
+    
+    /* 3D Glass Badge Styles */
     .badge-group {
-        opacity: 0;
-        animation: fadeInBadge 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
         transform-box: fill-box;
         transform-origin: center;
-        transition: transform 0.2s ease, filter 0.2s ease;
-    }
-    .badge-group:hover {
-        transform: scale(1.08);
-        filter: drop-shadow(0 0 3px var(--accent)) brightness(1.1);
+        transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
         cursor: pointer;
     }
-    .badge-rect {
-        fill: var(--bg-card);
-        stroke: var(--border);
-        stroke-width: 1px;
-        rx: 4px;
-        transition: stroke 0.2s ease, fill 0.2s ease;
-    }
-    .badge-group:hover .badge-rect {
+    
+    .badge-group:hover .badge-glass {
+        fill: rgba(255, 255, 255, 0.15);
         stroke: var(--accent);
-        fill: rgba(0, 212, 170, 0.05);
     }
+    
+    .badge-group:hover .badge-glow-bg {
+        opacity: 0.8;
+    }
+    
+    .badge-group:hover {
+        transform: scale(1.15) translateY(-5px);
+    }
+    
     .badge-text {
         font-family: 'JetBrains Mono', -apple-system, sans-serif;
         font-size: 11px;
-        font-weight: 600;
+        font-weight: 700;
         fill: var(--text);
     }
+    
     .cat-border {
-        stroke: var(--border);
-        stroke-width: 0.5px;
-        fill: none;
-        rx: 6px;
+        stroke: rgba(255,255,255,0.1);
+        stroke-width: 1px;
+        fill: rgba(0,0,0,0.2);
+        rx: 12px;
     }
-    @keyframes fadeInBadge {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
+    
+    /* Connections */
+    .tech-connection {
+        fill: none;
+        stroke: url(#connection-grad);
+        stroke-width: 1.5px;
+        stroke-dasharray: 4 8;
+        animation: flowLight 2s linear infinite;
+        opacity: 0.6;
+    }
+    
+    @keyframes flowLight {
+        to { stroke-dashoffset: -24; }
+    }
+    
+    @keyframes float1 { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-4px) rotate(1deg); } }
+    @keyframes float2 { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-3px) rotate(-1deg); } }
+    @keyframes float3 { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-5px) rotate(0.5deg); } }
+    
+    /* Holographic Background */
+    .holo-grid {
+        fill: url(#gridPattern);
+        opacity: 0.15;
+    }
+    
+    .scanner-beam {
+        fill: url(#scannerGrad);
+        animation: scan 8s ease-in-out infinite alternate;
+        opacity: 0.3;
+    }
+    
+    @keyframes scan {
+        0% { transform: translateY(-100px); }
+        100% { transform: translateY(800px); }
     }
     
 </style>
-<rect x="0.5" y="0.5" width="774" height="349" class="card" />
-<rect x="20" y="20" width="360" height="95" class="cat-border" />
-<text x="35" y="44" class="skill-cat-title">Frontend</text>
+<rect x="0.5" y="0.5" width="774" height="649" class="card" />
+<rect x="0" y="0" width="775" height="650" class="holo-grid" />
+<circle cx="150" cy="150" r="100" fill="var(--accent-purple)" opacity="0.05" filter="blur(40px)" />
+<circle cx="600" cy="450" r="120" fill="var(--accent)" opacity="0.05" filter="blur(50px)" />
+<rect x="0" y="0" width="775" height="60" class="scanner-beam" />
+<rect x="20" y="20" width="355" height="90" class="cat-border" />
+<text x="35" y="44" class="skill-cat-title">Programming Languages</text>
+<rect x="20" y="125" width="355" height="165" class="cat-border" />
+<text x="35" y="149" class="skill-cat-title">Frontend</text>
+<rect x="20" y="305" width="355" height="85" class="cat-border" />
+<text x="35" y="329" class="skill-cat-title">Build Tools & Code Quality</text>
+<rect x="395" y="20" width="355" height="165" class="cat-border" />
+<text x="410" y="44" class="skill-cat-title">Backend & Databases</text>
+<rect x="395" y="200" width="355" height="85" class="cat-border" />
+<text x="410" y="224" class="skill-cat-title">Mobile & Cross-Platform</text>
+<rect x="395" y="300" width="355" height="125" class="cat-border" />
+<text x="410" y="324" class="skill-cat-title">DevOps & Tools</text>
+<rect x="395" y="440" width="355" height="90" class="cat-border" />
+<text x="410" y="464" class="skill-cat-title">Design</text>
+<path d="M 306.5 178 C 306.5 193.0, 72.5 193.0, 72.5 208" class="tech-connection" />
+<path d="M 306.5 178 C 306.5 193.0, 306.5 193.0, 306.5 208" class="tech-connection" />
+<path d="M 306.5 178 C 306.5 208.0, 72.5 208.0, 72.5 238" class="tech-connection" />
+<path d="M 306.5 178 C 306.5 208.0, 175.0 208.0, 175.0 238" class="tech-connection" />
+<path d="M 306.5 178 C 306.5 223.0, 97.0 223.0, 97.0 268" class="tech-connection" />
+<path d="M 62.0 358 C 62.0 268.0, 306.5 268.0, 306.5 178" class="tech-connection" />
+<path d="M 136.5 358 C 136.5 268.0, 306.5 268.0, 306.5 178" class="tech-connection" />
+<path d="M 286.5 73 C 286.5 88.0, 518.5 88.0, 518.5 103" class="tech-connection" />
 
-            <g class="badge-group" style="animation-delay: 0ms;">
-                <rect x="35" y="58" width="61" height="18" class="badge-rect" />
-                <circle cx="44" cy="67" r="4" fill="#e34f26" />
-                <text x="54" y="71" class="badge-text">HTML5</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 0.0s;">
+                <!-- Outer Glow -->
+                <rect x="35" y="62" width="33" height="22" rx="6" fill="#a8b9cc" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="35" y="62" width="33" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="35" y="62" width="33" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="46" cy="73" r="4" fill="#a8b9cc" filter="drop-shadow(0 0 3px #a8b9cc)" />
+                
+                <!-- Text -->
+                <text x="55" y="77" class="badge-text">C</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 25ms;">
-                <rect x="104" y="58" width="54" height="18" class="badge-rect" />
-                <circle cx="113" cy="67" r="4" fill="#1572b6" />
-                <text x="123" y="71" class="badge-text">CSS3</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 0.15s;">
+                <!-- Outer Glow -->
+                <rect x="78" y="62" width="47" height="22" rx="6" fill="#00599c" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="78" y="62" width="47" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="78" y="62" width="47" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="89" cy="73" r="4" fill="#00599c" filter="drop-shadow(0 0 3px #00599c)" />
+                
+                <!-- Text -->
+                <text x="98" y="77" class="badge-text">C++</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 50ms;">
-                <rect x="166" y="58" width="96" height="18" class="badge-rect" />
-                <circle cx="175" cy="67" r="4" fill="#f7df1e" />
-                <text x="185" y="71" class="badge-text">JavaScript</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 0.3s;">
+                <!-- Outer Glow -->
+                <rect x="135" y="62" width="40" height="22" rx="6" fill="#239120" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="135" y="62" width="40" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="135" y="62" width="40" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="146" cy="73" r="4" fill="#239120" filter="drop-shadow(0 0 3px #239120)" />
+                
+                <!-- Text -->
+                <text x="155" y="77" class="badge-text">C#</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 75ms;">
-                <rect x="270" y="58" width="61" height="18" class="badge-rect" />
-                <circle cx="279" cy="67" r="4" fill="#20232a" />
-                <text x="289" y="71" class="badge-text">React</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 0.44999999999999996s;">
+                <!-- Outer Glow -->
+                <rect x="185" y="62" width="68" height="22" rx="6" fill="#3776ab" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="185" y="62" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="185" y="62" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="196" cy="73" r="4" fill="#3776ab" filter="drop-shadow(0 0 3px #3776ab)" />
+                
+                <!-- Text -->
+                <text x="205" y="77" class="badge-text">Python</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 100ms;">
-                <rect x="35" y="82" width="75" height="18" class="badge-rect" />
-                <circle cx="44" cy="91" r="4" fill="#000000" />
-                <text x="54" y="95" class="badge-text">Next.js</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 0.6s;">
+                <!-- Outer Glow -->
+                <rect x="263" y="62" width="47" height="22" rx="6" fill="#777bb4" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="263" y="62" width="47" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="263" y="62" width="47" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="274" cy="73" r="4" fill="#777bb4" filter="drop-shadow(0 0 3px #777bb4)" />
+                
+                <!-- Text -->
+                <text x="283" y="77" class="badge-text">PHP</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 125ms;">
-                <rect x="118" y="82" width="61" height="18" class="badge-rect" />
-                <circle cx="127" cy="91" r="4" fill="#593d88" />
-                <text x="137" y="95" class="badge-text">Redux</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 0.75s;">
+                <!-- Outer Glow -->
+                <rect x="35" y="92" width="54" height="22" rx="6" fill="#dea584" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="35" y="92" width="54" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="35" y="92" width="54" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="46" cy="103" r="4" fill="#dea584" filter="drop-shadow(0 0 3px #dea584)" />
+                
+                <!-- Text -->
+                <text x="55" y="107" class="badge-text">Rust</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 150ms;">
-                <rect x="187" y="82" width="89" height="18" class="badge-rect" />
-                <circle cx="196" cy="91" r="4" fill="#563d7c" />
-                <text x="206" y="95" class="badge-text">Bootstrap</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 0.8999999999999999s;">
+                <!-- Outer Glow -->
+                <rect x="35" y="167" width="61" height="22" rx="6" fill="#e34f26" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="35" y="167" width="61" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="35" y="167" width="61" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="46" cy="178" r="4" fill="#e34f26" filter="drop-shadow(0 0 3px #e34f26)" />
+                
+                <!-- Text -->
+                <text x="55" y="182" class="badge-text">HTML5</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 175ms;">
-                <rect x="35" y="106" width="110" height="18" class="badge-rect" />
-                <circle cx="44" cy="115" r="4" fill="#38b2ac" />
-                <text x="54" y="119" class="badge-text">Tailwind CSS</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 1.05s;">
+                <!-- Outer Glow -->
+                <rect x="106" y="167" width="54" height="22" rx="6" fill="#1572b6" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="106" y="167" width="54" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="106" y="167" width="54" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="117" cy="178" r="4" fill="#1572b6" filter="drop-shadow(0 0 3px #1572b6)" />
+                
+                <!-- Text -->
+                <text x="126" y="182" class="badge-text">CSS3</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 200ms;">
-                <rect x="153" y="106" width="54" height="18" class="badge-rect" />
-                <circle cx="162" cy="115" r="4" fill="#cc6699" />
-                <text x="172" y="119" class="badge-text">Sass</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 1.2s;">
+                <!-- Outer Glow -->
+                <rect x="170" y="167" width="96" height="22" rx="6" fill="#f7df1e" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="170" y="167" width="96" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="170" y="167" width="96" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="181" cy="178" r="4" fill="#f7df1e" filter="drop-shadow(0 0 3px #f7df1e)" />
+                
+                <!-- Text -->
+                <text x="190" y="182" class="badge-text">JavaScript</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 225ms;">
-                <rect x="215" y="106" width="82" height="18" class="badge-rect" />
-                <circle cx="224" cy="115" r="4" fill="#47848f" />
-                <text x="234" y="119" class="badge-text">Electron</text>
-            </g>
-            
-<rect x="20" y="130" width="360" height="200" class="cat-border" />
-<text x="35" y="154" class="skill-cat-title">Backend & Databases</text>
-
-            <g class="badge-group" style="animation-delay: 250ms;">
-                <rect x="35" y="168" width="75" height="18" class="badge-rect" />
-                <circle cx="44" cy="177" r="4" fill="#339933" />
-                <text x="54" y="181" class="badge-text">Node.js</text>
-            </g>
-            
-
-            <g class="badge-group" style="animation-delay: 275ms;">
-                <rect x="118" y="168" width="96" height="18" class="badge-rect" />
-                <circle cx="127" cy="177" r="4" fill="#000000" />
-                <text x="137" y="181" class="badge-text">Express.js</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 1.3499999999999999s;">
+                <!-- Outer Glow -->
+                <rect x="276" y="167" width="61" height="22" rx="6" fill="#20232a" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="276" y="167" width="61" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="276" y="167" width="61" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="287" cy="178" r="4" fill="#20232a" filter="drop-shadow(0 0 3px #20232a)" />
+                
+                <!-- Text -->
+                <text x="296" y="182" class="badge-text">React</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 300ms;">
-                <rect x="222" y="168" width="68" height="18" class="badge-rect" />
-                <circle cx="231" cy="177" r="4" fill="#092e20" />
-                <text x="241" y="181" class="badge-text">Django</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 1.5s;">
+                <!-- Outer Glow -->
+                <rect x="35" y="197" width="75" height="22" rx="6" fill="#000000" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="35" y="197" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="35" y="197" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="46" cy="208" r="4" fill="#000000" filter="drop-shadow(0 0 3px #000000)" />
+                
+                <!-- Text -->
+                <text x="55" y="212" class="badge-text">Next.js</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 325ms;">
-                <rect x="298" y="168" width="61" height="18" class="badge-rect" />
-                <circle cx="307" cy="177" r="4" fill="#000000" />
-                <text x="317" y="181" class="badge-text">Flask</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 1.65s;">
+                <!-- Outer Glow -->
+                <rect x="120" y="197" width="68" height="22" rx="6" fill="#4fc08d" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="120" y="197" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="120" y="197" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="131" cy="208" r="4" fill="#4fc08d" filter="drop-shadow(0 0 3px #4fc08d)" />
+                
+                <!-- Text -->
+                <text x="140" y="212" class="badge-text">Vue.js</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 350ms;">
-                <rect x="35" y="192" width="75" height="18" class="badge-rect" />
-                <circle cx="44" cy="201" r="4" fill="#ff2d20" />
-                <text x="54" y="205" class="badge-text">Laravel</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 1.7999999999999998s;">
+                <!-- Outer Glow -->
+                <rect x="198" y="197" width="68" height="22" rx="6" fill="#0769ad" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="198" y="197" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="198" y="197" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="209" cy="208" r="4" fill="#0769ad" filter="drop-shadow(0 0 3px #0769ad)" />
+                
+                <!-- Text -->
+                <text x="218" y="212" class="badge-text">jQuery</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 375ms;">
-                <rect x="118" y="192" width="47" height="18" class="badge-rect" />
-                <circle cx="127" cy="201" r="4" fill="#777bb4" />
-                <text x="137" y="205" class="badge-text">PHP</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 1.95s;">
+                <!-- Outer Glow -->
+                <rect x="276" y="197" width="61" height="22" rx="6" fill="#593d88" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="276" y="197" width="61" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="276" y="197" width="61" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="287" cy="208" r="4" fill="#593d88" filter="drop-shadow(0 0 3px #593d88)" />
+                
+                <!-- Text -->
+                <text x="296" y="212" class="badge-text">Redux</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 400ms;">
-                <rect x="173" y="192" width="68" height="18" class="badge-rect" />
-                <circle cx="182" cy="201" r="4" fill="#3776ab" />
-                <text x="192" y="205" class="badge-text">Python</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 2.1s;">
+                <!-- Outer Glow -->
+                <rect x="35" y="227" width="75" height="22" rx="6" fill="#443e38" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="35" y="227" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="35" y="227" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="46" cy="238" r="4" fill="#443e38" filter="drop-shadow(0 0 3px #443e38)" />
+                
+                <!-- Text -->
+                <text x="55" y="242" class="badge-text">Zustand</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 425ms;">
-                <rect x="249" y="192" width="61" height="18" class="badge-rect" />
-                <circle cx="258" cy="201" r="4" fill="#4479a1" />
-                <text x="268" y="205" class="badge-text">MySQL</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 2.25s;">
+                <!-- Outer Glow -->
+                <rect x="120" y="227" width="110" height="22" rx="6" fill="#ca4245" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="120" y="227" width="110" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="120" y="227" width="110" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="131" cy="238" r="4" fill="#ca4245" filter="drop-shadow(0 0 3px #ca4245)" />
+                
+                <!-- Text -->
+                <text x="140" y="242" class="badge-text">React Router</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 450ms;">
-                <rect x="35" y="216" width="96" height="18" class="badge-rect" />
-                <circle cx="44" cy="225" r="4" fill="#316192" />
-                <text x="54" y="229" class="badge-text">PostgreSQL</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 2.4s;">
+                <!-- Outer Glow -->
+                <rect x="35" y="257" width="124" height="22" rx="6" fill="#ff4154" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="35" y="257" width="124" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="35" y="257" width="124" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="46" cy="268" r="4" fill="#ff4154" filter="drop-shadow(0 0 3px #ff4154)" />
+                
+                <!-- Text -->
+                <text x="55" y="272" class="badge-text">TanStack Query</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 475ms;">
-                <rect x="139" y="216" width="75" height="18" class="badge-rect" />
-                <circle cx="148" cy="225" r="4" fill="#4ea94b" />
-                <text x="158" y="229" class="badge-text">MongoDB</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 2.55s;">
+                <!-- Outer Glow -->
+                <rect x="169" y="257" width="89" height="22" rx="6" fill="#563d7c" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="169" y="257" width="89" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="169" y="257" width="89" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="180" cy="268" r="4" fill="#563d7c" filter="drop-shadow(0 0 3px #563d7c)" />
+                
+                <!-- Text -->
+                <text x="189" y="272" class="badge-text">Bootstrap</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 500ms;">
-                <rect x="222" y="216" width="68" height="18" class="badge-rect" />
-                <circle cx="231" cy="225" r="4" fill="#07405e" />
-                <text x="241" y="229" class="badge-text">SQLite</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 2.6999999999999997s;">
+                <!-- Outer Glow -->
+                <rect x="35" y="287" width="110" height="22" rx="6" fill="#38b2ac" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="35" y="287" width="110" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="35" y="287" width="110" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="46" cy="298" r="4" fill="#38b2ac" filter="drop-shadow(0 0 3px #38b2ac)" />
+                
+                <!-- Text -->
+                <text x="55" y="302" class="badge-text">Tailwind CSS</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 525ms;">
-                <rect x="35" y="240" width="75" height="18" class="badge-rect" />
-                <circle cx="44" cy="249" r="4" fill="#003545" />
-                <text x="54" y="253" class="badge-text">MariaDB</text>
-            </g>
-            
-<rect x="395" y="20" width="360" height="70" class="cat-border" />
-<text x="410" y="44" class="skill-cat-title">Mobile & Cross-Platform</text>
-
-            <g class="badge-group" style="animation-delay: 550ms;">
-                <rect x="410" y="58" width="75" height="18" class="badge-rect" />
-                <circle cx="419" cy="67" r="4" fill="#02569b" />
-                <text x="429" y="71" class="badge-text">Flutter</text>
-            </g>
-            
-
-            <g class="badge-group" style="animation-delay: 575ms;">
-                <rect x="493" y="58" width="54" height="18" class="badge-rect" />
-                <circle cx="502" cy="67" r="4" fill="#0175c2" />
-                <text x="512" y="71" class="badge-text">Dart</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 2.85s;">
+                <!-- Outer Glow -->
+                <rect x="155" y="287" width="54" height="22" rx="6" fill="#cc6699" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="155" y="287" width="54" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="155" y="287" width="54" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="166" cy="298" r="4" fill="#cc6699" filter="drop-shadow(0 0 3px #cc6699)" />
+                
+                <!-- Text -->
+                <text x="175" y="302" class="badge-text">Sass</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 600ms;">
-                <rect x="555" y="58" width="75" height="18" class="badge-rect" />
-                <circle cx="564" cy="67" r="4" fill="#3ddc84" />
-                <text x="574" y="71" class="badge-text">Android</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 3.0s;">
+                <!-- Outer Glow -->
+                <rect x="219" y="287" width="82" height="22" rx="6" fill="#47848f" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="219" y="287" width="82" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="219" y="287" width="82" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="230" cy="298" r="4" fill="#47848f" filter="drop-shadow(0 0 3px #47848f)" />
+                
+                <!-- Text -->
+                <text x="239" y="302" class="badge-text">Electron</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 625ms;">
-                <rect x="638" y="58" width="68" height="18" class="badge-rect" />
-                <circle cx="647" cy="67" r="4" fill="#7f52ff" />
-                <text x="657" y="71" class="badge-text">Kotlin</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 3.15s;">
+                <!-- Outer Glow -->
+                <rect x="35" y="347" width="54" height="22" rx="6" fill="#646cff" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="35" y="347" width="54" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="35" y="347" width="54" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="46" cy="358" r="4" fill="#646cff" filter="drop-shadow(0 0 3px #646cff)" />
+                
+                <!-- Text -->
+                <text x="55" y="362" class="badge-text">Vite</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 650ms;">
-                <rect x="410" y="82" width="54" height="18" class="badge-rect" />
-                <circle cx="419" cy="91" r="4" fill="#ed8b00" />
-                <text x="429" y="95" class="badge-text">Java</text>
-            </g>
-            
-<rect x="395" y="105" width="360" height="95" class="cat-border" />
-<text x="410" y="129" class="skill-cat-title">DevOps & Tools</text>
-
-            <g class="badge-group" style="animation-delay: 675ms;">
-                <rect x="410" y="143" width="47" height="18" class="badge-rect" />
-                <circle cx="419" cy="152" r="4" fill="#f05032" />
-                <text x="429" y="156" class="badge-text">Git</text>
-            </g>
-            
-
-            <g class="badge-group" style="animation-delay: 700ms;">
-                <rect x="465" y="143" width="68" height="18" class="badge-rect" />
-                <circle cx="474" cy="152" r="4" fill="#2496ed" />
-                <text x="484" y="156" class="badge-text">Docker</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 3.3s;">
+                <!-- Outer Glow -->
+                <rect x="99" y="347" width="75" height="22" rx="6" fill="#8dd6f9" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="99" y="347" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="99" y="347" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="110" cy="358" r="4" fill="#8dd6f9" filter="drop-shadow(0 0 3px #8dd6f9)" />
+                
+                <!-- Text -->
+                <text x="119" y="362" class="badge-text">Webpack</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 725ms;">
-                <rect x="541" y="143" width="61" height="18" class="badge-rect" />
-                <circle cx="550" cy="152" r="4" fill="#fcc624" />
-                <text x="560" y="156" class="badge-text">Linux</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 3.4499999999999997s;">
+                <!-- Outer Glow -->
+                <rect x="184" y="347" width="68" height="22" rx="6" fill="#4b32c3" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="184" y="347" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="184" y="347" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="195" cy="358" r="4" fill="#4b32c3" filter="drop-shadow(0 0 3px #4b32c3)" />
+                
+                <!-- Text -->
+                <text x="204" y="362" class="badge-text">ESLint</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 750ms;">
-                <rect x="610" y="143" width="54" height="18" class="badge-rect" />
-                <circle cx="619" cy="152" r="4" fill="#4eaa25" />
-                <text x="629" y="156" class="badge-text">Bash</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 3.5999999999999996s;">
+                <!-- Outer Glow -->
+                <rect x="262" y="347" width="82" height="22" rx="6" fill="#f7b93e" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="262" y="347" width="82" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="262" y="347" width="82" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="273" cy="358" r="4" fill="#f7b93e" filter="drop-shadow(0 0 3px #f7b93e)" />
+                
+                <!-- Text -->
+                <text x="282" y="362" class="badge-text">Prettier</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 775ms;">
-                <rect x="410" y="167" width="82" height="18" class="badge-rect" />
-                <circle cx="419" cy="176" r="4" fill="#ffca28" />
-                <text x="429" y="180" class="badge-text">Firebase</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 3.75s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="62" width="75" height="22" rx="6" fill="#339933" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="62" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="62" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="73" r="4" fill="#339933" filter="drop-shadow(0 0 3px #339933)" />
+                
+                <!-- Text -->
+                <text x="430" y="77" class="badge-text">Node.js</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 800ms;">
-                <rect x="500" y="167" width="68" height="18" class="badge-rect" />
-                <circle cx="509" cy="176" r="4" fill="#430098" />
-                <text x="519" y="180" class="badge-text">Heroku</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 3.9s;">
+                <!-- Outer Glow -->
+                <rect x="495" y="62" width="96" height="22" rx="6" fill="#000000" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="495" y="62" width="96" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="495" y="62" width="96" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="506" cy="73" r="4" fill="#000000" filter="drop-shadow(0 0 3px #000000)" />
+                
+                <!-- Text -->
+                <text x="515" y="77" class="badge-text">Express.js</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 825ms;">
-                <rect x="576" y="167" width="89" height="18" class="badge-rect" />
-                <circle cx="585" cy="176" r="4" fill="#40b5a4" />
-                <text x="595" y="180" class="badge-text">Puppeteer</text>
-            </g>
-            
-<rect x="395" y="215" width="360" height="115" class="cat-border" />
-<text x="410" y="239" class="skill-cat-title">Design</text>
-
-            <g class="badge-group" style="animation-delay: 850ms;">
-                <rect x="410" y="253" width="61" height="18" class="badge-rect" />
-                <circle cx="419" cy="262" r="4" fill="#f24e1e" />
-                <text x="429" y="266" class="badge-text">Figma</text>
-            </g>
-            
-
-            <g class="badge-group" style="animation-delay: 875ms;">
-                <rect x="479" y="253" width="103" height="18" class="badge-rect" />
-                <circle cx="488" cy="262" r="4" fill="#ff9a00" />
-                <text x="498" y="266" class="badge-text">Illustrator</text>
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 4.05s;">
+                <!-- Outer Glow -->
+                <rect x="601" y="62" width="68" height="22" rx="6" fill="#092e20" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="601" y="62" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="601" y="62" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="612" cy="73" r="4" fill="#092e20" filter="drop-shadow(0 0 3px #092e20)" />
+                
+                <!-- Text -->
+                <text x="621" y="77" class="badge-text">Django</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 900ms;">
-                <rect x="590" y="253" width="89" height="18" class="badge-rect" />
-                <circle cx="599" cy="262" r="4" fill="#31a8ff" />
-                <text x="609" y="266" class="badge-text">Photoshop</text>
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 4.2s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="92" width="61" height="22" rx="6" fill="#000000" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="92" width="61" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="92" width="61" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="103" r="4" fill="#000000" filter="drop-shadow(0 0 3px #000000)" />
+                
+                <!-- Text -->
+                <text x="430" y="107" class="badge-text">Flask</text>
             </g>
             
 
-            <g class="badge-group" style="animation-delay: 925ms;">
-                <rect x="410" y="277" width="82" height="18" class="badge-rect" />
-                <circle cx="419" cy="286" r="4" fill="#ff61f6" />
-                <text x="429" y="290" class="badge-text">Adobe XD</text>
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 4.35s;">
+                <!-- Outer Glow -->
+                <rect x="481" y="92" width="75" height="22" rx="6" fill="#ff2d20" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="481" y="92" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="481" y="92" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="492" cy="103" r="4" fill="#ff2d20" filter="drop-shadow(0 0 3px #ff2d20)" />
+                
+                <!-- Text -->
+                <text x="501" y="107" class="badge-text">Laravel</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 4.5s;">
+                <!-- Outer Glow -->
+                <rect x="566" y="92" width="61" height="22" rx="6" fill="#4479a1" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="566" y="92" width="61" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="566" y="92" width="61" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="577" cy="103" r="4" fill="#4479a1" filter="drop-shadow(0 0 3px #4479a1)" />
+                
+                <!-- Text -->
+                <text x="586" y="107" class="badge-text">MySQL</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 4.6499999999999995s;">
+                <!-- Outer Glow -->
+                <rect x="637" y="92" width="96" height="22" rx="6" fill="#316192" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="637" y="92" width="96" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="637" y="92" width="96" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="648" cy="103" r="4" fill="#316192" filter="drop-shadow(0 0 3px #316192)" />
+                
+                <!-- Text -->
+                <text x="657" y="107" class="badge-text">PostgreSQL</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 4.8s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="122" width="75" height="22" rx="6" fill="#4ea94b" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="122" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="122" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="133" r="4" fill="#4ea94b" filter="drop-shadow(0 0 3px #4ea94b)" />
+                
+                <!-- Text -->
+                <text x="430" y="137" class="badge-text">MongoDB</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 4.95s;">
+                <!-- Outer Glow -->
+                <rect x="495" y="122" width="68" height="22" rx="6" fill="#07405e" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="495" y="122" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="495" y="122" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="506" cy="133" r="4" fill="#07405e" filter="drop-shadow(0 0 3px #07405e)" />
+                
+                <!-- Text -->
+                <text x="515" y="137" class="badge-text">SQLite</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 5.1s;">
+                <!-- Outer Glow -->
+                <rect x="573" y="122" width="75" height="22" rx="6" fill="#003545" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="573" y="122" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="573" y="122" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="584" cy="133" r="4" fill="#003545" filter="drop-shadow(0 0 3px #003545)" />
+                
+                <!-- Text -->
+                <text x="593" y="137" class="badge-text">MariaDB</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 5.25s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="242" width="75" height="22" rx="6" fill="#02569b" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="242" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="242" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="253" r="4" fill="#02569b" filter="drop-shadow(0 0 3px #02569b)" />
+                
+                <!-- Text -->
+                <text x="430" y="257" class="badge-text">Flutter</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 5.3999999999999995s;">
+                <!-- Outer Glow -->
+                <rect x="495" y="242" width="54" height="22" rx="6" fill="#0175c2" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="495" y="242" width="54" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="495" y="242" width="54" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="506" cy="253" r="4" fill="#0175c2" filter="drop-shadow(0 0 3px #0175c2)" />
+                
+                <!-- Text -->
+                <text x="515" y="257" class="badge-text">Dart</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 5.55s;">
+                <!-- Outer Glow -->
+                <rect x="559" y="242" width="75" height="22" rx="6" fill="#3ddc84" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="559" y="242" width="75" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="559" y="242" width="75" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="570" cy="253" r="4" fill="#3ddc84" filter="drop-shadow(0 0 3px #3ddc84)" />
+                
+                <!-- Text -->
+                <text x="579" y="257" class="badge-text">Android</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 5.7s;">
+                <!-- Outer Glow -->
+                <rect x="644" y="242" width="68" height="22" rx="6" fill="#7f52ff" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="644" y="242" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="644" y="242" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="655" cy="253" r="4" fill="#7f52ff" filter="drop-shadow(0 0 3px #7f52ff)" />
+                
+                <!-- Text -->
+                <text x="664" y="257" class="badge-text">Kotlin</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 5.85s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="272" width="54" height="22" rx="6" fill="#ed8b00" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="272" width="54" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="272" width="54" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="283" r="4" fill="#ed8b00" filter="drop-shadow(0 0 3px #ed8b00)" />
+                
+                <!-- Text -->
+                <text x="430" y="287" class="badge-text">Java</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 6.0s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="342" width="47" height="22" rx="6" fill="#f05032" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="342" width="47" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="342" width="47" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="353" r="4" fill="#f05032" filter="drop-shadow(0 0 3px #f05032)" />
+                
+                <!-- Text -->
+                <text x="430" y="357" class="badge-text">Git</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 6.1499999999999995s;">
+                <!-- Outer Glow -->
+                <rect x="467" y="342" width="68" height="22" rx="6" fill="#2496ed" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="467" y="342" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="467" y="342" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="478" cy="353" r="4" fill="#2496ed" filter="drop-shadow(0 0 3px #2496ed)" />
+                
+                <!-- Text -->
+                <text x="487" y="357" class="badge-text">Docker</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 6.3s;">
+                <!-- Outer Glow -->
+                <rect x="545" y="342" width="61" height="22" rx="6" fill="#fcc624" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="545" y="342" width="61" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="545" y="342" width="61" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="556" cy="353" r="4" fill="#fcc624" filter="drop-shadow(0 0 3px #fcc624)" />
+                
+                <!-- Text -->
+                <text x="565" y="357" class="badge-text">Linux</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 6.45s;">
+                <!-- Outer Glow -->
+                <rect x="616" y="342" width="54" height="22" rx="6" fill="#4eaa25" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="616" y="342" width="54" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="616" y="342" width="54" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="627" cy="353" r="4" fill="#4eaa25" filter="drop-shadow(0 0 3px #4eaa25)" />
+                
+                <!-- Text -->
+                <text x="636" y="357" class="badge-text">Bash</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 6.6s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="372" width="82" height="22" rx="6" fill="#ffca28" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="372" width="82" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="372" width="82" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="383" r="4" fill="#ffca28" filter="drop-shadow(0 0 3px #ffca28)" />
+                
+                <!-- Text -->
+                <text x="430" y="387" class="badge-text">Firebase</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 6.75s;">
+                <!-- Outer Glow -->
+                <rect x="502" y="372" width="68" height="22" rx="6" fill="#430098" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="502" y="372" width="68" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="502" y="372" width="68" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="513" cy="383" r="4" fill="#430098" filter="drop-shadow(0 0 3px #430098)" />
+                
+                <!-- Text -->
+                <text x="522" y="387" class="badge-text">Heroku</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 6.8999999999999995s;">
+                <!-- Outer Glow -->
+                <rect x="580" y="372" width="89" height="22" rx="6" fill="#40b5a4" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="580" y="372" width="89" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="580" y="372" width="89" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="591" cy="383" r="4" fill="#40b5a4" filter="drop-shadow(0 0 3px #40b5a4)" />
+                
+                <!-- Text -->
+                <text x="600" y="387" class="badge-text">Puppeteer</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 7.05s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="482" width="61" height="22" rx="6" fill="#f24e1e" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="482" width="61" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="482" width="61" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="493" r="4" fill="#f24e1e" filter="drop-shadow(0 0 3px #f24e1e)" />
+                
+                <!-- Text -->
+                <text x="430" y="497" class="badge-text">Figma</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float1 4s ease-in-out infinite 7.199999999999999s;">
+                <!-- Outer Glow -->
+                <rect x="481" y="482" width="103" height="22" rx="6" fill="#ff9a00" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="481" y="482" width="103" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="481" y="482" width="103" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="492" cy="493" r="4" fill="#ff9a00" filter="drop-shadow(0 0 3px #ff9a00)" />
+                
+                <!-- Text -->
+                <text x="501" y="497" class="badge-text">Illustrator</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float2 4s ease-in-out infinite 7.35s;">
+                <!-- Outer Glow -->
+                <rect x="594" y="482" width="89" height="22" rx="6" fill="#31a8ff" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="594" y="482" width="89" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="594" y="482" width="89" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="605" cy="493" r="4" fill="#31a8ff" filter="drop-shadow(0 0 3px #31a8ff)" />
+                
+                <!-- Text -->
+                <text x="614" y="497" class="badge-text">Photoshop</text>
+            </g>
+            
+
+            <g class="badge-group" style="animation: float3 4s ease-in-out infinite 7.5s;">
+                <!-- Outer Glow -->
+                <rect x="410" y="512" width="82" height="22" rx="6" fill="#ff61f6" opacity="0" filter="blur(8px)" class="badge-glow-bg" transition="opacity 0.3s" />
+                
+                <!-- Main Glass Pane with shadow -->
+                <rect x="410" y="512" width="82" height="22" rx="6" fill="url(#badge-glass-grad)" filter="url(#badge-shadow)" />
+                
+                <!-- Specular Highlight Top Border -->
+                <rect x="410" y="512" width="82" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
+                
+                <!-- Color Dot / Logo Indicator -->
+                <circle cx="421" cy="523" r="4" fill="#ff61f6" filter="drop-shadow(0 0 3px #ff61f6)" />
+                
+                <!-- Text -->
+                <text x="430" y="527" class="badge-text">Adobe XD</text>
             </g>
             
 </svg>

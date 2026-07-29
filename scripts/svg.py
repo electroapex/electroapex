@@ -10,6 +10,17 @@ class SVGDocument:
         self.extra_styles = extra_styles
         self.elements = []
         self.defs = []
+        # Add 3D Vision OS style glassmorphic gradients
+        self.defs.append("""
+    <linearGradient id="card-bg-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="var(--bg-card)" stop-opacity="0.95" />
+        <stop offset="100%" stop-color="var(--bg-card)" stop-opacity="0.6" />
+    </linearGradient>
+    <linearGradient id="card-border-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.2)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+    </linearGradient>
+        """)
 
     def add_element(self, element_str):
         self.elements.append(element_str)
@@ -61,10 +72,11 @@ body {{
 }}
 
 .card {{
-    fill: var(--bg-card);
-    stroke: var(--border);
-    stroke-width: 1px;
-    rx: 8px;
+    fill: url(#card-bg-grad);
+    stroke: url(#card-border-grad);
+    stroke-width: 1.5px;
+    rx: 12px;
+    filter: url(#shadow3d);
 }}
 
 .title {{
