@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 487" width="100%" height="100%" style="border-radius: 8px;">
+
+<style>
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url(data:font/woff2;charset=utf-8;base64,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) format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-purple: #bc8cff;
+    --accent-orange: #f0883e;
+    --sparkline: #58a6ff;
+    --sparkline-fill: rgba(88, 166, 255, 0.1);
+}
+
+/* Light mode override */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #ffffff;
+        --bg-card: #f6f8fa;
+        --border: #d0d7de;
+        --text: #24292f;
+        --text-muted: #57606a;
+        --accent: #0969da;
+        --accent-green: #1a7f37;
+        --accent-purple: #8250df;
+        --accent-orange: #bc4c00;
+        --sparkline: #0969da;
+        --sparkline-fill: rgba(9, 105, 218, 0.1);
+    }
+}
+
+body {
+    font-family: 'JetBrains Mono', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text);
+    margin: 0;
+}
+
+.card {
+    fill: var(--bg-card);
+    stroke: var(--border);
+    stroke-width: 1px;
+    rx: 8px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    fill: var(--accent);
+}
+
+.label {
+    font-size: 13px;
+    fill: var(--text-muted);
+}
+
+.value {
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--text);
+}
+
+
+    .ascii-art {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 8.5px;
+        line-height: 8.5px;
+        fill: var(--accent);
+        letter-spacing: 0px;
+    }
+    .ascii-row {
+        white-space: pre;
+    }
+    /* Subtly animate the lines for a matrix/hologram glowing look */
+    @keyframes pulse-glow {
+        0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 1px var(--accent)); }
+        50% { opacity: 1.0; filter: drop-shadow(0 0 3px var(--accent)); }
+    }
+    .ascii-container {
+        animation: pulse-glow 4s ease-in-out infinite;
+    }
+    
+</style>
+<g class="ascii-container">
+<text x="10" y="15" class="ascii-art">
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                                                                                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                        .`:--:::`.                                                  </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                     .:-=--:::---==-`.                                              </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                   `---::::`:`::::----:`                                            </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                 .-=-:`::``::```````:::::.                                          </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                .-:::``:.`````````::```:::.                                         </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                :``::.`..``...```````...```                                         </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                :.:=c*+=:.....``````:`..`:.                                         </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                :::+s#sss*=-:::::``:++:..:                                          </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                 :=sscss###s#sc=---+cc=`.`                                          </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                 .-c+==-=*#sc+--=++*cs*::-                                          </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                  -sc++:=+cs*+++:==*csc-*s=                                         </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                 `*sssc***ssc+***ccsssc=+#*                                         </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                 `cs##sssssssccss####s*-+s+                                         </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                 `*c#####s##c**s####sc=:c#-                                         </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                  ++####s+-=-:=*s##sc=`:-.                                          </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                   :*##c-:-==--::+s*=:`-:                                           </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                    :+sc+*cc*****+*=:.`+-                                           </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                     `+++cc=:-**+:--``+*=..                                         </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                      `::-==---:`..`-**+=*c`                                        </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                       .````.....`-*cc==cssc:                                       </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                        .=+---=+*css*-+sssssc+=-:.                                  </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                        ::c###sssss=:cs##sssc+==+**+-`                              </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                     :=**`-*csssc+`:s#####scc+==+***ccc+-`                          </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                                  :=*ccs+:-:-==+-`-cs###sccc*+==+******ccc*=`                       </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                              .:=****css=:sc**cs#*csccccc****=-=+******cccccc+.                     </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                            :+*ccccc**cc-.s##%s++ccccccc***+===+***ccccccccccc+                     </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                           +cccc*ccccccc:.c##*-:ccccccccc*+*+==*cccccccccccccc*:                    </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                          -ccccc*cccccc*:.*sc:`*cccc*ccc*cc**++*ccccccsccccccc*+.                   </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                          +sssssccccccc*:`c#s:*ccccccc**cccc***cccssccccccccccc+`                   </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                         .cssssssccccc**:+###*ccccsss**ssscc*ccsssscccssccccccc*:                   </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                         :ssssssscccccc*-s%%scccccss**ssssssssssssccsscssccccccc-                   </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                         =sssssssccccc**=s%sccssssc+=:-*sssssssssc*cccsccccccccc+.                  </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                         csssssssccc*cc*+ssccssssc+-`...-*csssssc**ccssssssccccc*:                  </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        .ssssssssccccccc+cssssssc+:..... `=cssssc+=csssssscssccc*=                  </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        `ssssssscccccccc+csssss**=.....:.`:*cssc*==cccsssccssccc*+`                 </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        `ssssssscccccccccssssc*+c*=++*ccsssscsc*+=+csssssccsscccc+-                 </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        -sssssssscccccccssssc++ccssssssssssscsc*+=*sssssccssccccc*=.                </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        =ssssssssccccccssssc++ccssssssssssssscc*+-*sssscccsccsscc*+`                </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        =sssssssscccccssssc+**ccssssssssssssscc*=-cssccccsssssscc*+-                </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        =ssssssssccccssss*+*ccccssssssssssssscc+==csssssssssssscc*+=                </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        =ssssccsscccssss**cccccssssssssssssscc*+==csssssssssssscc*+=                </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        =ssssssssccsssc++ccccccsssssccccsssscc*+=-cssscsssccssssc*+=                </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        *sscccsssccssc++ccccccccssss*==*csssc**+=-*sccssscccssssc*+-                </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        css++ccsssss*=+ccssscssssssc*=-*ccccc*++=-=ccsscccssssssc*+-                </tspan>
+<tspan x="10" dy="8.5px" class="ascii-row">                        *ssscccssss*++*ccsssccsssssccccccccc**++=---*s**csssssssc*+:                </tspan>
+</text>
+</g>
+</svg>
