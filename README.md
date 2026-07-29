@@ -45,23 +45,13 @@
 <!-- GitHub Analytics Section (Side-by-Side Dashboard Layout) -->
 ## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px" height="30px">&nbsp; GitHub Analytics
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tr>
-    <td width="48%" valign="top">
-      <!-- Left Column: ASCII Portrait -->
-      <img src="assets/portrait.svg" width="100%" alt="ASCII Scanner Portrait" />
-    </td>
-    <td width="4%"></td>
-    <td width="48%" valign="top">
-      <!-- Right Column: Developer Stats, Contribution Streak, and Top Languages -->
-      <img src="assets/stats.svg" width="100%" alt="Developer Stats" />
-      <br/><br/>
-      <img src="assets/streak.svg" width="100%" alt="Contribution Streak" />
-      <br/><br/>
-      <img src="assets/languages.svg" width="100%" alt="Languages Chart" />
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="assets/portrait.svg" width="48%" align="left" alt="ASCII Scanner Portrait" />
+  <img src="assets/stats.svg" width="48%" align="right" alt="Developer Stats" />
+  <img src="assets/streak.svg" width="48%" align="right" alt="Contribution Streak" style="margin-top: 10px;" />
+  <img src="assets/languages.svg" width="48%" align="right" alt="Languages Chart" style="margin-top: 10px;" />
+</p>
+<div style="clear: both;"></div>
 
 <br/>
 
@@ -71,18 +61,7 @@
 
 <br/>
 
-<!-- Heatmap Calendar Section -->
-<p align="center">
-  <img src="assets/year.svg" width="100%" alt="Yearly Contribution Heatmap" />
-</p>
 
-<br/>
-
-<p align="center">
-  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
-</p>
-
-<br/>
 
 <!-- Tech Stack Section -->
 ## <img src="https://media.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif" width="30px" height="30px">&nbsp; Tech Stack & Tools

@@ -1,4 +1,6 @@
 import os
+import urllib.request
+import base64
 from scripts.config import ASSETS_DIR, HEADINGS, BACKGROUND_SVG_PATH, TYPING_SVG_PATH
 from scripts.svg import SVGDocument
 from scripts.utils import logger
@@ -272,6 +274,24 @@ def generate_background_svg():
     """)
     svg.save(BACKGROUND_SVG_PATH)
 
+
+def get_icon_base64(tech_name):
+    mapping = {
+        "HTML5": "html", "CSS3": "css", "Node.js": "nodejs", 
+        "Express.js": "express", "React Router": "react", 
+        "Tailwind CSS": "tailwindcss", "C++": "cpp", "C#": "cs", 
+        "Vue.js": "vue", "Adobe XD": "xd", "TanStack Query": "react"
+    }
+    clean_name = mapping.get(tech_name, tech_name.lower().replace(" ", "").replace(".", ""))
+    url = f"https://skillicons.dev/icons?i={clean_name}"
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as response:
+            b64 = base64.b64encode(response.read()).decode('utf-8')
+            return f"data:image/svg+xml;base64,{b64}"
+    except Exception:
+        return None
+
 def generate_skills_svg():
     """Generates a beautiful self-contained technical skills grid SVG card with 3D Holographic effects."""
     filepath = os.path.join(ASSETS_DIR, "skills.svg")
@@ -513,6 +533,9 @@ def generate_skills_svg():
             anim_delay = (badge_index * 0.15)
             badge_index += 1
             
+            b64_img = get_icon_base64(name)
+            logo_svg = f'<image href="{b64_img}" x="{curr_x + 4}" y="{curr_y + 4}" width="14" height="14" />' if b64_img else f'{logo_svg}'
+            
             # The holographic 3D card
             rendered_badges.append(f"""
             <g class="badge-group" style="animation: {anim_class} 4s ease-in-out infinite {anim_delay}s;">
@@ -526,7 +549,7 @@ def generate_skills_svg():
                 <rect x="{curr_x}" y="{curr_y}" width="{badge_w}" height="22" rx="6" fill="none" stroke="url(#badge-edge-grad)" stroke-width="1.5" class="badge-glass" />
                 
                 <!-- Color Dot / Logo Indicator -->
-                <circle cx="{curr_x + 11}" cy="{curr_y + 11}" r="4" fill="{color}" filter="drop-shadow(0 0 3px {color})" />
+                {logo_svg}
                 
                 <!-- Text -->
                 <text x="{curr_x + 20}" y="{curr_y + 15}" class="badge-text">{name}</text>
