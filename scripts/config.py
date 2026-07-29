@@ -26,35 +26,35 @@ FONT_URL = "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Jet
 FONT_FILENAME = "JetBrainsMono-Regular.ttf"
 FONT_PATH = os.path.join(FONTS_DIR, FONT_FILENAME)
 
-# Theme Configuration (Accent color set to Vue green #00D4AA as per sample)
+# Theme Configuration (Linear/Vercel Inspired Ultra-Premium Theme)
 THEME = {
     "dark": {
-        "bg": "#0d1117",
-        "bg_card": "#161b22",
-        "border": "#30363d",
-        "text": "#c9d1d9",
-        "text_muted": "#8b949e",
-        "accent": "#00D4AA",
-        "accent_green": "#3fb950",
-        "accent_purple": "#bc8cff",
-        "accent_orange": "#f0883e",
-        "sparkline": "#00D4AA",
-        "sparkline_fill": "rgba(0, 212, 170, 0.05)",
-        "heatmap": ["#161b22", "#003c2e", "#006d52", "#00a37b", "#00D4AA"],
+        "bg": "#000000",
+        "bg_card": "#0F0F11",
+        "border": "#262628",
+        "text": "#EEEEEE",
+        "text_muted": "#8A8F98",
+        "accent": "#5E6AD2",
+        "accent_green": "#4DA269",
+        "accent_purple": "#8A63D2",
+        "accent_orange": "#E36C2F",
+        "sparkline": "#5E6AD2",
+        "sparkline_fill": "rgba(94, 106, 210, 0.1)",
+        "heatmap": ["#161b22", "#1d2539", "#2e3b5e", "#445588", "#5E6AD2"],
     },
     "light": {
-        "bg": "#ffffff",
-        "bg_card": "#f6f8fa",
-        "border": "#d0d7de",
-        "text": "#24292f",
-        "text_muted": "#57606a",
-        "accent": "#00a37b",
-        "accent_green": "#1a7f37",
-        "accent_purple": "#8250df",
-        "accent_orange": "#bc4c00",
-        "sparkline": "#00a37b",
-        "sparkline_fill": "rgba(0, 163, 123, 0.05)",
-        "heatmap": ["#ebedf0", "#a6ebd9", "#5cd0b5", "#00a37b", "#006d52"],
+        "bg": "#FFFFFF",
+        "bg_card": "#F7F7F9",
+        "border": "#EBEBEF",
+        "text": "#111113",
+        "text_muted": "#687076",
+        "accent": "#5E6AD2",
+        "accent_green": "#2F8E4B",
+        "accent_purple": "#793EE8",
+        "accent_orange": "#C54E00",
+        "sparkline": "#5E6AD2",
+        "sparkline_fill": "rgba(94, 106, 210, 0.1)",
+        "heatmap": ["#ebedf0", "#d5daf2", "#b0bce6", "#8b9fd9", "#5E6AD2"],
     }
 }
 

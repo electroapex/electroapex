@@ -343,7 +343,7 @@ def generate_streak_svg(data):
     
     # Col 1: Current Streak
     svg.add_element(f"""
-    <g class="streak-item" style="animation-delay: 0ms; transform: translate(10px, 0);">
+    <g class="streak-item" style="animation-delay: 0ms;" transform="translate(10, 0)">
         <path d="{flame_path}" transform="translate(30, 20) scale(0.9)" class="streak-icon-flame" />
         <text x="65" y="38" class="streak-title">CURRENT STREAK</text>
         {"".join(c_elems)}
@@ -356,7 +356,7 @@ def generate_streak_svg(data):
     
     # Col 2: Longest Streak
     svg.add_element(f"""
-    <g class="streak-item" style="animation-delay: 150ms; transform: translate(155px, 0);">
+    <g class="streak-item" style="animation-delay: 150ms;" transform="translate(155, 0)">
         <path d="{trophy_path}" transform="translate(25, 20) scale(0.9)" class="streak-icon-trophy" />
         <text x="60" y="38" class="streak-title">LONGEST STREAK</text>
         {"".join(l_elems)}
@@ -368,7 +368,7 @@ def generate_streak_svg(data):
     
     # Col 3: Total Contributions
     svg.add_element(f"""
-    <g class="streak-item" style="animation-delay: 300ms; transform: translate(305px, 0);">
+    <g class="streak-item" style="animation-delay: 300ms;" transform="translate(305, 0)">
         <path d="{star_icon}" transform="translate(20, 20) scale(0.9)" class="streak-icon-star" />
         <text x="55" y="38" class="streak-title">TOTAL CONTS</text>
         {"".join(t_elems)}
