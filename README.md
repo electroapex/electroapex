@@ -12,19 +12,24 @@
 
 <br/>
 
-<!-- Dashboard: Scanline ASCII Portrait + rolling stats, streak flame and languages -->
+<!-- About Me Section -->
+## <img src="https://media.giphy.com/media/W5eoZHPpUx9sapR0eu/giphy.gif" width="30px" height="30px" alt="About Me">&nbsp; About Me
+
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
-    <td width="48%" valign="top">
-      <img src="assets/portrait.svg" width="100%" alt="ASCII Scanner Portrait" />
+    <td width="60%" valign="top">
+      <br/>
+      <ul>
+        <li>🌱 Exploring <strong>Cloud & DevOps</strong></li>
+        <li>👯 Looking to collaborate on <strong>open source projects</strong></li>
+        <li>💬 Ask me about <strong>Full Stack Development, APIs, UI/UX</strong></li>
+        <li>⚡ Fun fact: <strong>I live for this Sausage 🫡</strong></li>
+        <li>🎯 Goal: <strong>Building impactful digital solutions</strong></li>
+      </ul>
     </td>
-    <td width="4%"></td>
-    <td width="48%" valign="top">
-      <img src="assets/stats.svg" width="100%" alt="Rolling Developer Stats" />
-      <br/><br/>
-      <img src="assets/streak.svg" width="100%" alt="Flickering Streak Tracker" />
-      <br/><br/>
-      <img src="assets/languages.svg" width="100%" alt="Top Languages Chart" />
+    <td width="5%"></td>
+    <td width="35%" valign="top">
+      <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="320px" alt="Coding GIF" />
     </td>
   </tr>
 </table>
@@ -37,7 +42,36 @@
 
 <br/>
 
-<!-- Heatmap contribution calendar with pulse today cell -->
+<!-- GitHub Analytics Section (Side-by-Side Dashboard Layout) -->
+## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px" height="30px">&nbsp; GitHub Analytics
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td width="48%" valign="top">
+      <!-- Left Column: ASCII Portrait -->
+      <img src="assets/portrait.svg" width="100%" alt="ASCII Scanner Portrait" />
+    </td>
+    <td width="4%"></td>
+    <td width="48%" valign="top">
+      <!-- Right Column: Developer Stats, Contribution Streak, and Top Languages -->
+      <img src="assets/stats.svg" width="100%" alt="Developer Stats" />
+      <br/><br/>
+      <img src="assets/streak.svg" width="100%" alt="Contribution Streak" />
+      <br/><br/>
+      <img src="assets/languages.svg" width="100%" alt="Languages Chart" />
+    </td>
+  </tr>
+</table>
+
+<br/>
+
+<p align="center">
+  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
+</p>
+
+<br/>
+
+<!-- Heatmap Calendar Section -->
 <p align="center">
   <img src="assets/year.svg" width="100%" alt="Yearly Contribution Heatmap" />
 </p>
@@ -50,40 +84,8 @@
 
 <br/>
 
-<!-- About section header and info cards -->
-<p align="left">
-  <img src="assets/heading-about.svg" alt="About Me Heading" />
-</p>
-
-Hi, I'm **M. Huzaifa Hafeez**, a full stack engineer dedicated to building modern, performant, and developer-grade applications. I turn clean architectural designs into real-world code systems while maintaining safe, readable, and highly scalable codebases.
-
-<!-- Premium Information Columns -->
-<table border="0" cellpadding="10" cellspacing="0" width="100%">
-  <tr>
-    <td width="48%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; background-color: #161b22;">
-      <h4>🔭 Current Focus</h4>
-      <p>Building <strong>Algo Union</strong>, a specialized interactive code evaluation and visual tracer platform for studying data structures and algorithms.</p>
-    </td>
-    <td width="4%"></td>
-    <td width="48%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; background-color: #161b22;">
-      <h4>🌱 Continuous Learning</h4>
-      <p>Researching advanced <strong>Rust compile-time assertions</strong>, memory boundaries, and safe concurrency patterns in systems programming.</p>
-    </td>
-  </tr>
-</table>
-
-<br/>
-
-<p align="center">
-  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
-</p>
-
-<br/>
-
-<!-- Skills section header and Skills SVG Grid -->
-<p align="left">
-  <img src="assets/heading-skills.svg" alt="Technical Skills Heading" />
-</p>
+<!-- Tech Stack Section -->
+## <img src="https://media.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif" width="30px" height="30px">&nbsp; Tech Stack & Tools
 
 <p align="center">
   <img src="assets/skills.svg" width="100%" alt="Technical Skills Grid" />
@@ -97,14 +99,23 @@ Hi, I'm **M. Huzaifa Hafeez**, a full stack engineer dedicated to building moder
 
 <br/>
 
-<!-- Projects section header and Projects SVG Card Panel -->
-<p align="left">
-  <img src="assets/heading-projects.svg" alt="Featured Projects Heading" />
-</p>
+<!-- Connect with Me Section -->
+## <img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="30px" height="30px">&nbsp; Connect with Me
 
-<p align="center">
-  <img src="assets/projects.svg" width="100%" alt="Featured Projects Card Grid" />
-</p>
+<div align="center">
+  <a href="mailto:huzaifa.hafeez.dev@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+  </a>
+  <a href="https://linkedin.com/in/electroapex" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="https://github.com/electroapex" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  <a href="https://electroapex.github.io" target="_blank">
+    <img src="https://img.shields.io/badge/Website-00D4AA?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website" />
+  </a>
+</div>
 
 <br/>
 
@@ -114,16 +125,12 @@ Hi, I'm **M. Huzaifa Hafeez**, a full stack engineer dedicated to building moder
 
 <br/>
 
-<!-- Contact section header and links -->
-<p align="left">
-  <img src="assets/heading-contact.svg" alt="Get in Touch Heading" />
+<!-- Projects Section -->
+## <img src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif" width="30px" height="30px">&nbsp; Projects
+
+<p align="center">
+  <img src="assets/projects.svg" width="100%" alt="Featured Projects Grid" />
 </p>
-
-Feel free to connect for collaborations, architectural reviews, or system designs:
-
-* 📧 **Email**: [huzaifa.hafeez.dev@gmail.com](mailto:huzaifa.hafeez.dev@gmail.com)
-* 💼 **LinkedIn**: [M. Huzaifa Hafeez](https://linkedin.com/in/electroapex)
-* 🌐 **Portfolio**: [electroapex.github.io](https://electroapex.github.io)
 
 ---
 <p align="center">

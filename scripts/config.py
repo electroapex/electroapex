@@ -26,7 +26,7 @@ FONT_URL = "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Jet
 FONT_FILENAME = "JetBrainsMono-Regular.ttf"
 FONT_PATH = os.path.join(FONTS_DIR, FONT_FILENAME)
 
-# Theme Configuration
+# Theme Configuration (Accent color set to Vue green #00D4AA as per sample)
 THEME = {
     "dark": {
         "bg": "#0d1117",
@@ -34,13 +34,13 @@ THEME = {
         "border": "#30363d",
         "text": "#c9d1d9",
         "text_muted": "#8b949e",
-        "accent": "#58a6ff",
+        "accent": "#00D4AA",
         "accent_green": "#3fb950",
         "accent_purple": "#bc8cff",
         "accent_orange": "#f0883e",
-        "sparkline": "#58a6ff",
-        "sparkline_fill": "rgba(88, 166, 255, 0.05)",
-        "heatmap": ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+        "sparkline": "#00D4AA",
+        "sparkline_fill": "rgba(0, 212, 170, 0.05)",
+        "heatmap": ["#161b22", "#003c2e", "#006d52", "#00a37b", "#00D4AA"],
     },
     "light": {
         "bg": "#ffffff",
@@ -48,13 +48,13 @@ THEME = {
         "border": "#d0d7de",
         "text": "#24292f",
         "text_muted": "#57606a",
-        "accent": "#0969da",
+        "accent": "#00a37b",
         "accent_green": "#1a7f37",
         "accent_purple": "#8250df",
         "accent_orange": "#bc4c00",
-        "sparkline": "#0969da",
-        "sparkline_fill": "rgba(9, 105, 218, 0.05)",
-        "heatmap": ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
+        "sparkline": "#00a37b",
+        "sparkline_fill": "rgba(0, 163, 123, 0.05)",
+        "heatmap": ["#ebedf0", "#a6ebd9", "#5cd0b5", "#00a37b", "#006d52"],
     }
 }
 
@@ -66,8 +66,8 @@ PORTRAIT = {
         os.path.join(ASSETS_DIR, "M Huzaifa Hafeez.png")
     ],
     "output_path": os.path.join(ASSETS_DIR, "portrait.svg"),
-    "width": 90,               # Width in characters
-    "height": 0,                # Auto-calculate
+    "width": 90,
+    "height": 0,
     "char_aspect": 0.55,
     "density_ramp": " .`:-=+*cs#%@",
     "bilateral_d": 9,
@@ -98,38 +98,56 @@ HEADINGS = {
 
 # Terminal Typing Lines
 TYPING_LINES = [
-    "⚡ Passionate about full stack web development and problem solving...",
-    "💻 React, TypeScript, PHP, Python, C++, SQL, Rust...",
-    "🚀 Turning complex ideas into elegant, production-ready code."
+    "Hey 👋, I'm M. Huzaifa Hafeez",
+    "💻 Full Stack Developer & Open Source Enthusiast...",
+    "🚀 Exploring Cloud & DevOps..."
 ]
 
 # Featured Projects Config
 PROJECTS_LIST = [
     {
-        "title": "Algo Union",
-        "description": "Interactive DS & Algorithms learning platform featuring code playgrounds and live tracing.",
-        "stack": ["TypeScript", "React", "Express", "MongoDB"],
-        "status": "production",
-        "stars": 24,
-        "color": "#3178c6",
-        "logo_text": "AU"
-    },
-    {
-        "title": "Django E-Commerce",
-        "description": "Multi-tenant merchant storefront engine integrating Stripe checkout and analytics boards.",
-        "stack": ["Python", "Django", "PostgreSQL", "Tailwind"],
+        "title": "Boiler Plate Generator",
+        "description": "Stub accelerator & runtime generator program to speed up bootstrapping.",
+        "stack": ["Python", "Cli", "Automation"],
         "status": "active",
-        "stars": 15,
-        "color": "#092e20",
-        "logo_text": "DE"
+        "stars": 18,
+        "color": "#00D4AA",
+        "logo_text": "BP"
     },
     {
-        "title": "Rust DSA",
-        "description": "High-performance structures and algorithms library built using idiomatic, safe Rust compiler constraints.",
-        "stack": ["Rust", "Cargo", "Github Actions"],
-        "status": "stable",
+        "title": "Accounting Application",
+        "description": "Cross-platform accounting tool for general purposes and expense audits.",
+        "stack": ["React", "Electron", "SQLite"],
+        "status": "active",
         "stars": 12,
-        "color": "#dee5e6",
-        "logo_text": "RD"
+        "color": "#38B2AC",
+        "logo_text": "AC"
+    },
+    {
+        "title": "Image & Video Editor",
+        "description": "Rock-solid free media editing application built on top of ffmpeg pipelines.",
+        "stack": ["Node.js", "FFmpeg", "Electron"],
+        "status": "stable",
+        "stars": 14,
+        "color": "#8250df",
+        "logo_text": "IE"
+    },
+    {
+        "title": "eCommerce Builder",
+        "description": "Engine for launching independent, SEO-optimized merchant platforms.",
+        "stack": ["React", "Express", "PostgreSQL"],
+        "status": "stable",
+        "stars": 20,
+        "color": "#bc4c00",
+        "logo_text": "EC"
+    },
+    {
+        "title": "Job Aggregator",
+        "description": "Unified platform aggregating developer vacancies with quick-apply workflows.",
+        "stack": ["Next.js", "Django", "Postgres"],
+        "status": "production",
+        "stars": 22,
+        "color": "#00599c",
+        "logo_text": "JA"
     }
 ]

@@ -108,19 +108,17 @@ def generate_typing_svg():
     }
     """
     
-    # Collect characters for subsetting
     charset = (
         "electroapex@github:~$ npx profile --runFetching stats from GraphQL..."
         "Loading metrics[============>] 100% Success! Loaded 14 assets, 42 repos, 752 commits."
         "Status: Active | Language Stack: TS, Rust, Python, PHPAudio sound placeholders: beep"
+        "Hey I'm M. Huzaifa HafeezFull Stack DeveloperOpen Source EnthusiastExploring Cloud DevOps"
         "0123456789.:;+-_()[]/|\\ "
     )
     
     svg = SVGDocument(width, height, subset_chars=charset, extra_styles=extra_styles)
     
-    # Base layout
     svg.add_element(f"""
-    <!-- Terminal window body -->
     <rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" class="terminal-body" />
     <path d="M 0.5,8 A 8,8 0 0,1 8,0.5 L {width - 8},0.5 A 8,8 0 0,1 {width - 0.5},8 L {width - 0.5},30 L 0.5,30 Z" class="terminal-header" />
     <circle cx="20" cy="15" class="terminal-dot" fill="#ff5f56" />
@@ -129,21 +127,13 @@ def generate_typing_svg():
     <text x="{width // 2}" y="20" fill="var(--text-muted)" font-family="sans-serif" font-size="11" text-anchor="middle" font-weight="600">bash - electroapex@terminal</text>
     """)
     
-    # Prompt line 1
-    # Prompt is: electroapex@github:~$ npx profile --run
     svg.add_element(f"""
-    <!-- Prompt 1 prefix -->
     <text x="25" y="55" class="terminal-text">
         <tspan class="term-user">electroapex</tspan><tspan class="term-symbol">@</tspan><tspan class="term-prompt">github</tspan><tspan class="term-symbol">:~$ </tspan>
     </text>
     """)
     
-    # Animated typed text on Line 1: "npx profile --run"
-    # Word character width ~ 7.8px
-    typed_text_w = round(len("npx profile --run") * 7.8, 1)
-    
     svg.add_def("""
-    <!-- ClipPath to animate typing loop -->
     <clipPath id="term-clip-1">
         <rect x="180" y="40" height="22" width="0">
             <animate attributeName="width" values="0;135;135;135;0;0" keyTimes="0;0.12;0.78;0.88;0.96;1" dur="16s" repeatCount="indefinite" />
@@ -152,13 +142,11 @@ def generate_typing_svg():
     """)
     
     svg.add_element(f"""
-    <!-- Line 1 typed command -->
     <text x="180" y="55" class="terminal-text" clip-path="url(#term-clip-1)">
         <tspan class="term-keyword">npx</tspan> profile --run
     </text>
     """)
     
-    # Cursor 1 (for typing line 1)
     svg.add_element(f"""
     <rect x="180" y="43" width="8" height="14" class="cursor-block">
         <animate attributeName="x" values="180;315;315;315;180;180" keyTimes="0;0.12;0.78;0.88;0.96;1" dur="16s" repeatCount="indefinite" />
@@ -167,19 +155,13 @@ def generate_typing_svg():
     </rect>
     """)
     
-    # --- Loading Execution (starts at t=2.8s, finishes at t=5.0s) ---
     svg.add_element(f"""
-    <!-- Execution indicators group -->
     <g>
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.17;0.18;0.76;0.78;1" dur="16s" repeatCount="indefinite" />
-        
-        <!-- Loading spinner -->
         <path d="M 35 77 A 5 5 0 1 1 34.9 77" class="spinner-arc" stroke-dasharray="10 5">
             <animateTransform attributeName="transform" type="rotate" from="0 35 82" to="360 35 82" dur="1s" repeatCount="indefinite" />
         </path>
         <text x="50" y="87" class="terminal-text" fill="var(--text-muted)">Fetching metrics from GraphQL...</text>
-        
-        <!-- Progress bar track and fill -->
         <rect x="35" y="102" width="150" height="6" class="progress-bar-track" />
         <rect x="35" y="102" width="0" height="6" class="progress-bar-fill">
             <animate attributeName="width" values="0;0;150;150;0;0" keyTimes="0;0.22;0.36;0.76;0.78;1" dur="16s" repeatCount="indefinite" />
@@ -191,32 +173,24 @@ def generate_typing_svg():
     </g>
     """)
     
-    # --- Output Section (starts appearing at t=6.0s) ---
     svg.add_element(f"""
-    <!-- Terminal success output details -->
     <g>
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.38;0.40;0.76;0.78;1" dur="16s" repeatCount="indefinite" />
-        
-        <!-- Output Line 1 -->
         <text x="25" y="132" class="terminal-text" fill="var(--accent)">
             &gt; Success! Loaded 14 assets, 42 repos, 752 commits.
         </text>
-        
-        <!-- Output Line 2 -->
         <text x="25" y="152" class="terminal-text" fill="var(--text-muted)">
             &gt; Status: <tspan class="term-prompt">Active</tspan> | Language Stack: <tspan class="term-keyword">TS, Rust, Python, PHP</tspan>
         </text>
     </g>
     """)
     
-    # Prompt line 2 (appears at bottom at t=7.0s, showing cursor blinking)
     svg.add_element(f"""
     <g>
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.44;0.46;0.76;0.78;1" dur="16s" repeatCount="indefinite" />
         <text x="25" y="177" class="terminal-text">
             <tspan class="term-user">electroapex</tspan><tspan class="term-symbol">@</tspan><tspan class="term-prompt">github</tspan><tspan class="term-symbol">:~$ </tspan>
         </text>
-        <!-- Blinking cursor at prompt 2 -->
         <rect x="180" y="165" width="8" height="14" class="cursor-block">
             <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite" />
         </rect>
@@ -267,7 +241,7 @@ def generate_background_svg():
     }
     """
     
-    svg = SVGDocument(width, height, subset_chars="M. HUZAIFA HAFEEZFull Stack Engineer & Problem Solver", extra_styles=extra_styles)
+    svg = SVGDocument(width, height, subset_chars="Hey I'm M. Huzaifa HafeezFull Stack DeveloperOpen Source EnthusiastExploring Cloud DevOps", extra_styles=extra_styles)
     svg.add_def("""
     <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#0f172a" />
@@ -275,7 +249,7 @@ def generate_background_svg():
         <stop offset="100%" stop-color="#1e152a" />
     </linearGradient>
     <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#58a6ff" />
+        <stop offset="0%" stop-color="#00D4AA" />
         <stop offset="50%" stop-color="#bc8cff" />
         <stop offset="100%" stop-color="#ff7b72" />
     </linearGradient>
@@ -287,16 +261,13 @@ def generate_background_svg():
     svg.add_element(f"""
     <rect width="{width}" height="{height}" fill="url(#bg-grad)" />
     <rect width="{width}" height="{height}" fill="url(#banner-grid-pat)" />
-    
-    <!-- Abstract graphical glows -->
-    <circle cx="10%" cy="50%" r="90" fill="#58a6ff" opacity="0.08" filter="blur(20px)" />
+    <circle cx="10%" cy="50%" r="90" fill="#00D4AA" opacity="0.08" filter="blur(20px)" />
     <circle cx="85%" cy="30%" r="80" fill="#bc8cff" opacity="0.08" filter="blur(20px)" />
     
-    <!-- Text contents -->
     <g transform="translate(45, 0)">
-        <text x="0" y="60" class="banner-title">M. HUZAFA HAFEEZ</text>
-        <text x="0" y="88" class="banner-subtitle">Full Stack Engineer &amp; Problem Solver</text>
-        <text x="0" y="108" font-family="'JetBrains Mono'" font-size="10" fill="#3fb950" class="banner-tag">&lt;developer status="active" /&gt;</text>
+        <text x="0" y="60" class="banner-title">M. HUIZAIFA HAFEEZ</text>
+        <text x="0" y="88" class="banner-subtitle">Full Stack Developer &amp; Open Source Enthusiast</text>
+        <text x="0" y="108" font-family="'JetBrains Mono'" font-size="10" fill="#00D4AA" class="banner-tag">&lt;developer status="active" /&gt;</text>
     </g>
     """)
     svg.save(BACKGROUND_SVG_PATH)
@@ -307,7 +278,7 @@ def generate_skills_svg():
     logger.info(f"Generating skills.svg -> {filepath}")
     
     width = 775
-    height = 240
+    height = 350
     
     extra_styles = """
     .skill-cat-title {
@@ -337,7 +308,7 @@ def generate_skills_svg():
     }
     .badge-group:hover .badge-rect {
         stroke: var(--accent);
-        fill: rgba(88, 166, 255, 0.05);
+        fill: rgba(0, 212, 170, 0.05);
     }
     .badge-text {
         font-family: 'JetBrains Mono', -apple-system, sans-serif;
@@ -358,55 +329,66 @@ def generate_skills_svg():
     """
     
     charset = (
-        "LanguagesFrameworksDatabasesTools"
-        "JavaScriptTypeScriptPythonJavaC++C#RustPHPKotlinHTML5CSS3SassSQLBash"
-        "ReactVue.jsNode.jsExpressDjangoLaravelElectronTailwindCSSBootstrapRedux"
-        "PostgreSQLMySQLMariaDBMongoDBFirebase"
-        "GitGitHubVSCodeIntelliJIDEAFigmaPostmanLinuxVim"
+        "FrontendBackendDatabasesMobileCross-PlatformDevOpsToolsDesign"
+        "HTML5CSS3JavaScriptReactNext.jsReduxBootstrapTailwindCSSSassElectron"
+        "Node.jsExpress.jsDjangoFlaskLaravelRuby RailsPHPPythonMySQLPostgreSQLMongoDBSQLiteMariaDB"
+        "FlutterDartAndroidKotlinJavaGitDockerLinuxBashFirebaseHerokuPuppeteer"
+        "FigmaIllustratorPhotoshopAdobeXD"
         "0123456789.,:;+-_()[]/ "
     )
     
     svg = SVGDocument(width, height, subset_chars=charset, extra_styles=extra_styles)
-    svg.add_element('<rect x="0.5" y="0.5" width="774" height="239" class="card" />')
+    svg.add_element('<rect x="0.5" y="0.5" width="774" height="349" class="card" />')
     
     categories = [
         {
-            "title": "Languages",
-            "x": 20, "y": 20, "w": 360, "h": 90,
+            "title": "Frontend",
+            "x": 20, "y": 20, "w": 360, "h": 95,
             "skills": [
-                ("JavaScript", "#f7df1e"), ("TypeScript", "#3178c6"), 
-                ("Python", "#3776ab"), ("C++", "#00599c"), 
-                ("Rust", "#dee5e6"), ("PHP", "#777bb4"), 
-                ("SQL", "#4479a1"), ("Bash", "#4eaa25")
+                ("HTML5", "#e34f26"), ("CSS3", "#1572b6"), 
+                ("JavaScript", "#f7df1e"), ("React", "#20232a"), 
+                ("Next.js", "#000000"), ("Redux", "#593d88"), 
+                ("Bootstrap", "#563d7c"), ("Tailwind CSS", "#38b2ac"), 
+                ("Sass", "#cc6699"), ("Electron", "#47848f")
             ]
         },
         {
-            "title": "Frameworks & Libraries",
-            "x": 395, "y": 20, "w": 360, "h": 90,
+            "title": "Backend & Databases",
+            "x": 20, "y": 130, "w": 360, "h": 200,
             "skills": [
-                ("React", "#61dafb"), ("Vue.js", "#4fc08d"), 
-                ("Node.js", "#339933"), ("Django", "#092e20"), 
-                ("Laravel", "#ff2d20"), ("Tailwind CSS", "#06b6d4"),
-                ("Redux", "#764abc")
+                ("Node.js", "#339933"), ("Express.js", "#000000"), 
+                ("Django", "#092e20"), ("Flask", "#000000"), 
+                ("Laravel", "#ff2d20"), ("PHP", "#777bb4"), 
+                ("Python", "#3776ab"), ("MySQL", "#4479a1"), 
+                ("PostgreSQL", "#316192"), ("MongoDB", "#4ea94b"), 
+                ("SQLite", "#07405e"), ("MariaDB", "#003545")
             ]
         },
         {
-            "title": "Databases & Storage",
-            "x": 20, "y": 130, "w": 360, "h": 90,
+            "title": "Mobile & Cross-Platform",
+            "x": 395, "y": 20, "w": 360, "h": 70,
             "skills": [
-                ("PostgreSQL", "#4169e1"), ("MySQL", "#4479a1"), 
-                ("MongoDB", "#47a248"), ("Firebase", "#ffca28"),
-                ("MariaDB", "#003545")
+                ("Flutter", "#02569b"), ("Dart", "#0175c2"), 
+                ("Android", "#3ddc84"), ("Kotlin", "#7f52ff"), 
+                ("Java", "#ed8b00")
             ]
         },
         {
-            "title": "Tools & Developer OS",
-            "x": 395, "y": 130, "w": 360, "h": 90,
+            "title": "DevOps & Tools",
+            "x": 395, "y": 105, "w": 360, "h": 95,
             "skills": [
-                ("Git", "#f05032"), ("GitHub", "#c9d1d9"), 
-                ("VS Code", "#007acc"), ("Figma", "#f24e1e"), 
-                ("Postman", "#ff6c37"), ("Linux", "#fcc624"),
-                ("Vim", "#019733")
+                ("Git", "#f05032"), ("Docker", "#2496ed"), 
+                ("Linux", "#fcc624"), ("Bash", "#4eaa25"), 
+                ("Firebase", "#ffca28"), ("Heroku", "#430098"), 
+                ("Puppeteer", "#40b5a4")
+            ]
+        },
+        {
+            "title": "Design",
+            "x": 395, "y": 215, "w": 360, "h": 115,
+            "skills": [
+                ("Figma", "#f24e1e"), ("Illustrator", "#ff9a00"), 
+                ("Photoshop", "#31a8ff"), ("Adobe XD", "#ff61f6")
             ]
         }
     ]

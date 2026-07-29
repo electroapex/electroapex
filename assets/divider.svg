@@ -27,12 +27,12 @@
     --border: #30363d;
     --text: #c9d1d9;
     --text-muted: #8b949e;
-    --accent: #58a6ff;
+    --accent: #00D4AA;
     --accent-green: #3fb950;
     --accent-purple: #bc8cff;
     --accent-orange: #f0883e;
-    --sparkline: #58a6ff;
-    --sparkline-fill: rgba(88, 166, 255, 0.05);
+    --sparkline: #00D4AA;
+    --sparkline-fill: rgba(0, 212, 170, 0.05);
 }
 
 /* Light mode override */
@@ -43,12 +43,12 @@
         --border: #d0d7de;
         --text: #24292f;
         --text-muted: #57606a;
-        --accent: #0969da;
+        --accent: #00a37b;
         --accent-green: #1a7f37;
         --accent-purple: #8250df;
         --accent-orange: #bc4c00;
-        --sparkline: #0969da;
-        --sparkline-fill: rgba(9, 105, 218, 0.05);
+        --sparkline: #00a37b;
+        --sparkline-fill: rgba(0, 163, 123, 0.05);
     }
 }
 
