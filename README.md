@@ -15,24 +15,25 @@
 <!-- About Me Section -->
 ## <img src="https://media.giphy.com/media/W5eoZHPpUx9sapR0eu/giphy.gif" width="30px" height="30px" alt="About Me">&nbsp; About Me
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tr>
-    <td width="60%" valign="top">
-      <br/>
-      <ul>
-        <li>🌱 Exploring <strong>Cloud & DevOps</strong></li>
-        <li>👯 Looking to collaborate on <strong>open source projects</strong></li>
-        <li>💬 Ask me about <strong>Full Stack Development, APIs, UI/UX</strong></li>
-        <li>⚡ Fun fact: <strong>I live for this Sausage 🫡</strong></li>
-        <li>🎯 Goal: <strong>Building impactful digital solutions</strong></li>
-      </ul>
-    </td>
-    <td width="5%"></td>
-    <td width="35%" valign="top">
-      <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="320px" alt="Coding GIF" />
-    </td>
-  </tr>
-</table>
+<div align="center">
+
+| | |
+|:---|:---|
+| 🌍 **Location** | Lahore, Pakistan 🇵🇰 |
+| 🎓 **Studying** | Computer Science |
+| 💼 **Role** | Full Stack Developer |
+| 🌱 **Learning** | Cloud & DevOps |
+| 💬 **Ask me about** | Full Stack, APIs, UI/UX |
+| 🎯 **Goal** | Building impactful digital solutions |
+| ⚡ **Fun fact** | I live for the grind 🫡 |
+
+</div>
+
+<div align="center">
+
+![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=14&duration=2500&pause=1000&color=5E6AD2&center=true&vCenter=true&multiline=true&width=600&height=60&lines=Full+Stack+Developer+%7C+Open+Source+Enthusiast;Building+premium+products+from+Lahore+🇵🇰)
+
+</div>
 
 <br/>
 
