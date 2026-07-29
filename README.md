@@ -48,23 +48,23 @@
 ## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px" height="30px">&nbsp; GitHub Analytics
 
 <p align="center">
-  <img src="assets/portrait.svg" width="100%" alt="ASCII Scanner Portrait" />
+  <img src="assets/portrait.svg?v=2" width="100%" alt="ASCII Scanner Portrait" />
 </p>
 
 <p align="center">
-  <img src="assets/stats.svg" width="100%" alt="Developer Stats" />
+  <img src="assets/stats.svg?v=2" width="100%" alt="Developer Stats" />
 </p>
 
 <p align="center">
-  <img src="assets/streak.svg" width="100%" alt="Contribution Streak" />
+  <img src="assets/streak.svg?v=2" width="100%" alt="Contribution Streak" />
 </p>
 
 <p align="center">
-  <img src="assets/languages.svg" width="100%" alt="Languages Chart" />
+  <img src="assets/languages.svg?v=2" width="100%" alt="Languages Chart" />
 </p>
 
 <p align="center">
-  <img src="assets/year.svg" width="100%" alt="Yearly Contribution Heatmap" />
+  <img src="assets/year.svg?v=2" width="100%" alt="Yearly Contribution Heatmap" />
 </p>
 <br/>
 
@@ -80,7 +80,7 @@
 ## <img src="https://media.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif" width="30px" height="30px">&nbsp; Tech Stack & Tools
 
 <p align="center">
-  <img src="assets/skills.svg" width="100%" alt="Technical Skills Grid" />
+  <img src="assets/skills.svg?v=2" width="100%" alt="Technical Skills Grid" />
 </p>
 
 <br/>
