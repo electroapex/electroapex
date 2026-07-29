@@ -452,7 +452,7 @@ def generate_skills_svg():
     sep_x = PAD + COL_W + COL_GAP // 2
     svg.add_element(f'<line x1="{sep_x}" y1="{PAD}" x2="{sep_x}" y2="{height - PAD}" class="sk-sep" />')
 
-    # ── Render a column of categories ────────────────────────────
+    # ── Render one column — single pass, cy derived from actual py ──
     def render_column(cats, col_x, col_w):
         cy = PAD
         anim_idx = 0
@@ -460,60 +460,55 @@ def generate_skills_svg():
             accent = cat["accent"]
             title  = cat["title"]
 
-            # Category title with accent dot
+            # Header: accent dot + title text
             svg.add_element(f'<circle cx="{col_x + 4}" cy="{cy + 10}" r="3" fill="{accent}" />')
             svg.add_element(f'<text x="{col_x + 14}" y="{cy + 15}" class="sk-cat-title">{title}</text>')
-
-            # Underline accent
+            # Full-width underline at half opacity
             svg.add_element(f'<line x1="{col_x}" y1="{cy + 22}" x2="{col_x + col_w}" y2="{cy + 22}" stroke="{accent}" stroke-width="0.5" opacity="0.3" />')
 
+            # Pills — track actual px/py (the ONLY source of truth for cy)
             px = col_x
-            py = cy + 32
-            usable = col_w
+            py = cy + 34   # 34px below top of category block = after title + underline + small gap
 
+            first_pill = True
             for name, color in cat["skills"]:
-                pw = max(len(name) * CHAR_W + 36, 60)
-                if px > col_x and px + pw > col_x + usable:
+                pw = int(max(len(name) * CHAR_W + 36, 60))
+
+                # Wrap to next row when pill exceeds right edge (never wrap the first pill in a row)
+                if not first_pill and px + pw > col_x + col_w:
                     px  = col_x
                     py += PILL_H + ROW_GAP
 
-                delay_ms = anim_idx * 35
+                delay_ms = anim_idx * 30
                 b64  = all_skills.get(name)
-                logo = (f'<image href="{b64}" x="{px+8}" y="{py+7}" width="{LOGO_SZ}" height="{LOGO_SZ}" />'
-                        if b64 else
-                        f'<circle cx="{px+17}" cy="{py+{PILL_H}//2}" r="5" fill="{color}" />')
+                ccy  = py + PILL_H // 2  # vertical center of pill
 
-                svg.add_element(f"""
-                <g>
+                logo = (f'<image href="{b64}" x="{px+7}" y="{py+7}" width="{LOGO_SZ}" height="{LOGO_SZ}" />'
+                        if b64 else
+                        f'<circle cx="{px+16}" cy="{ccy}" r="5" fill="{color}" />')
+
+                svg.add_element(f"""<g>
                     <rect x="{px}" y="{py}" width="{pw}" height="{PILL_H}" rx="{PILL_R}" class="sk-pill">
-                        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="{delay_ms}ms" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="{delay_ms}ms" fill="freeze"/>
                     </rect>
                     {logo}
-                    <text x="{px+33}" y="{py+PILL_H//2+5}" class="sk-pill-text" opacity="0">
-                        {name}
-                        <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="{delay_ms+80}ms" fill="freeze" />
+                    <text x="{px+32}" y="{ccy+5}" class="sk-pill-text" opacity="0">{name}
+                        <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="{delay_ms+60}ms" fill="freeze"/>
                     </text>
                 </g>""")
 
                 px += pw + PILL_GAP
                 anim_idx += 1
+                first_pill = False
 
-            # advance cy
-            rows_used = 1
-            test_px = col_x
-            for name, _ in cat["skills"]:
-                pw = max(len(name) * CHAR_W + 36, 60)
-                if test_px > col_x and test_px + pw > col_x + usable:
-                    rows_used += 1
-                    test_px = col_x
-                test_px += pw + PILL_GAP
+            # cy for NEXT category = bottom of last pill + GAP
+            cy = py + PILL_H + GAP
 
-            cy += 20 + 10 + rows_used * (PILL_H + ROW_GAP) + GAP
-
-    render_column(LEFT_CATS,  PAD,            COL_W)
-    render_column(RIGHT_CATS, PAD + COL_W + COL_GAP, COL_W)
+    render_column(LEFT_CATS,  PAD,                     COL_W)
+    render_column(RIGHT_CATS, PAD + COL_W + COL_GAP,  COL_W)
 
     svg.save(filepath)
+
 
 
 def generate_all_headings():
