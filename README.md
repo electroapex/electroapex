@@ -15,7 +15,9 @@
 <!-- About Me Section -->
 ## <img src="https://media.giphy.com/media/W5eoZHPpUx9sapR0eu/giphy.gif" width="30px" height="30px" alt="About Me">&nbsp; About Me
 
-<div align="center">
+<table border="0" cellpadding="10" cellspacing="0" width="100%">
+  <tr>
+    <td width="55%" valign="top">
 
 | | |
 |:---|:---|
@@ -27,13 +29,12 @@
 | 🎯 **Goal** | Building impactful digital solutions |
 | ⚡ **Fun fact** | I live for the grind 🫡 |
 
-</div>
-
-<div align="center">
-
-![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=14&duration=2500&pause=1000&color=5E6AD2&center=true&vCenter=true&multiline=true&width=600&height=60&lines=Full+Stack+Developer+%7C+Open+Source+Enthusiast;Building+premium+products+from+Lahore+🇵🇰)
-
-</div>
+  </td>
+    <td width="45%" valign="center" align="center">
+      <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="100%" alt="Coding GIF" />
+    </td>
+  </tr>
+</table>
 
 <br/>
 
