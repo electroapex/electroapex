@@ -381,7 +381,7 @@ def generate_skills_svg():
             ]
         },
         {
-            "title": "Build & Code Quality",
+            "title": "Build &amp; Code Quality",
             "x": 10, "y": 350, "w": 360, "h": 90,
             "skills": [
                 ("Vite", "#646cff"), ("ESLint", "#4b32c3"), ("Prettier", "#f7b93e")
@@ -390,7 +390,7 @@ def generate_skills_svg():
         
         # RIGHT COLUMN
         {
-            "title": "Backend & Databases",
+            "title": "Backend &amp; Databases",
             "x": 400, "y": 20, "w": 360, "h": 130,
             "skills": [
                 ("Node.js", "#339933"), ("Express.js", "#ffffff"), 
@@ -408,7 +408,7 @@ def generate_skills_svg():
             ]
         },
         {
-            "title": "DevOps & Infrastructure",
+            "title": "DevOps &amp; Infrastructure",
             "x": 400, "y": 270, "w": 360, "h": 60,
             "skills": [
                 ("Linux", "#fcc624"), ("Bash", "#4eaa25")

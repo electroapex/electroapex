@@ -395,64 +395,50 @@ def generate_languages_svg(data):
     }
     """
     
-    charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ., :;%#&_+-()[]"
-    svg = SVGDocument(450, 200, subset_chars=charset, extra_styles=extra_styles)
+    charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ., :;%#&_+-()[] "
     
-    svg.add_element('<rect x="0.5" y="0.5" width="449" height="199" class="card" />')
-    svg.add_element('<text x="25" y="35" class="title">Top Languages</text>')
+    top_langs = languages[:8]
+    n = len(top_langs)
+    ROWS = (n + 1) // 2
+
+    # Tight layout: title 28px, bar 12px, rows 22px each + padding
+    HEIGHT = 28 + 18 + 14 + ROWS * 22 + 16
     
-    if not languages:
-        svg.add_element('<text x="25" y="80" class="label">No language data found.</text>')
+    svg = SVGDocument(450, HEIGHT, subset_chars=charset, extra_styles=extra_styles)
+    svg.add_element(f'<rect x="0.5" y="0.5" width="449" height="{HEIGHT - 1}" class="card" />')
+    svg.add_element('<text x="20" y="20" class="langs-title">Top Languages</text>')
+    
+    if not top_langs:
+        svg.add_element('<text x="20" y="55" class="lang-name">No language data.</text>')
         svg.save(LANGUAGES_SVG_PATH)
         return
-        
-    bar_width = 400
-    bar_x = 25
-    bar_y = 55
-    bar_h = 10
     
-    current_x = bar_x
-    drawn_segments = []
-    
-    top_languages = languages[:5]
-    
-    for idx, lang in enumerate(top_languages):
-        lang_pct = lang["size"] / total_bytes if total_bytes > 0 else 0
-        w = lang_pct * bar_width
-        if w < 1:
-            continue
-            
-        drawn_segments.append(f"""
-        <rect x="{current_x}" y="{bar_y}" width="0" height="{bar_h}" fill="{lang['color']}">
-            <animate attributeName="width" from="0" to="{w}" dur="1.2s" fill="freeze" />
-        </rect>
-        """)
-        current_x += w
-        
-    svg.add_element(f'<rect x="{bar_x}" y="{bar_y}" width="{bar_width}" height="{bar_h}" class="lang-progress-bg" />')
-    
-    for seg in drawn_segments:
-        svg.add_element(seg)
-        
-    col1_x = 25
-    col2_x = 225
-    y_start = 90
-    dy = 28
-    
-    for idx, lang in enumerate(languages[:8]):
-        col = col1_x if idx % 2 == 0 else col2_x
-        row = idx // 2
-        y = y_start + row * dy
-        anim_delay = idx * 80
-        
-        svg.add_element(f"""
-        <g class="lang-row" style="animation-delay: {anim_delay}ms;">
-            <circle cx="{col + 8}" cy="{y - 4}" r="6" fill="{lang["color"]}" />
-            <text x="{col + 24}" y="{y}" class="lang-item-name">{lang["name"]}</text>
-            <text x="{col + 140}" y="{y}" class="lang-item-percent">{lang["percent"]}%</text>
-        </g>
-        """)
-        
+    # Segmented progress bar
+    BAR_X, BAR_Y, BAR_W, BAR_H = 20, 30, 410, 8
+    svg.add_element(f'<rect x="{BAR_X}" y="{BAR_Y}" width="{BAR_W}" height="{BAR_H}" fill="var(--border)" rx="3" />')
+    cur_x = BAR_X
+    for lang in top_langs:
+        pct = lang["size"] / total_bytes if total_bytes > 0 else 0
+        seg_w = round(pct * BAR_W, 2)
+        if seg_w < 1: continue
+        svg.add_element(f'<rect x="{cur_x}" y="{BAR_Y}" width="{seg_w}" height="{BAR_H}" fill="{lang["color"]}" rx="2" />')
+        cur_x += seg_w
+
+    # 2-column language list — absolute positions only
+    COL1_X = 20
+    COL2_X = 235
+    ROW_START_Y = 30 + BAR_H + 20
+
+    for idx, lang in enumerate(top_langs):
+        col_x = COL1_X if idx % 2 == 0 else COL2_X
+        row   = idx // 2
+        y     = ROW_START_Y + row * 22
+        pct_str = f"{lang['percent']}%"
+
+        svg.add_element(f'<circle cx="{col_x + 5}" cy="{y - 3}" r="4" fill="{lang["color"]}" />')
+        svg.add_element(f'<text x="{col_x + 16}" y="{y}" class="lang-name">{lang["name"]}</text>')
+        svg.add_element(f'<text x="{col_x + 175}" y="{y}" text-anchor="end" class="lang-pct">{pct_str}</text>')
+
     svg.save(LANGUAGES_SVG_PATH)
 
 def main():
