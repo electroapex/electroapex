@@ -27,13 +27,17 @@ def generate_year_svg(data):
     weeks = calendar.get("weeks", [])
     total_conts = calendar.get("totalContributions", 0)
     
-    cell_size = 10
-    cell_spacing = 3
-    left_padding = 40
-    top_padding = 40
+    cell_size    = 13
+    cell_spacing  = 3
+    left_padding  = 38
+    top_padding   = 42
     
-    width = 775
-    height = 175
+    # Dynamic width/height from actual data
+    num_weeks = len(weeks) if weeks else 53
+    graph_w   = left_padding + num_weeks * (cell_size + cell_spacing)
+    graph_h   = top_padding  + 7 * (cell_size + cell_spacing)
+    width     = max(graph_w + 20, 760)
+    height    = graph_h + 50  # space for legend + timestamp
     
     dark = THEME["dark"]
     light = THEME["light"]
@@ -108,7 +112,7 @@ def generate_year_svg(data):
     charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ., :;%#&_+-()[]"
     svg = SVGDocument(width, height, subset_chars=charset, extra_styles=extra_styles)
     
-    svg.add_element('<rect x="0.5" y="0.5" width="774" height="174" class="card" />')
+    svg.add_element(f'<rect x="0.5" y="0.5" width="{width-1}" height="{height-1}" class="card" />')
     
     svg.add_element(f"""
     <text x="20" y="25" class="title">Yearly Contributions</text>
@@ -157,8 +161,8 @@ def generate_year_svg(data):
     for month_name, x_pos in month_labels:
         svg.add_element(f'<text x="{x_pos}" y="35" class="label-month">{month_name}</text>')
         
-    legend_x = 580
-    legend_y = 145
+    legend_x = width - 140
+    legend_y = height - 24
     svg.add_element(f"""
     <text x="{legend_x - 32}" y="{legend_y + 9}" class="label-day" font-size="10">Less</text>
     <rect x="{legend_x}" y="{legend_y}" width="{cell_size}" height="{cell_size}" class="day-cell level-0" style="animation-delay: 0ms;" />
