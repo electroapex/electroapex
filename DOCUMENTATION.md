@@ -1,6 +1,6 @@
 # Technical Documentation & User Guide
 
-This guide details the setup, configuration, architecture, and troubleshooting procedures for the self-generating GitHub profile system.
+This guide details the setup, configuration, architecture, and troubleshooting procedures for the redesigned self-generating GitHub profile system.
 
 ---
 
@@ -89,16 +89,16 @@ pip install -r requirements.txt
 ```
 
 ### Local Verification & SVG Generation
-Before pushing to GitHub, you can test the scripts locally. 
-> [!NOTE]
-> If you run the scripts without setting `GITHUB_TOKEN`, the GraphQL client will automatically fall back to beautiful mock data so that the system generates the output files immediately.
-
+Before pushing to GitHub, you can test the scripts locally:
 ```bash
 # Run the generators in sequence
+export PYTHONPATH=.
 python scripts/generate_headings.py
 python scripts/generate_portrait.py
 python scripts/generate_stats.py
 python scripts/generate_year.py
+python scripts/generate_projects.py
+python scripts/generate_dividers.py
 ```
 
 ### GitHub Secrets & Actions Setup
@@ -124,28 +124,26 @@ GITHUB_USERNAME = "your_username"
 GITHUB_REPO = "your_username"
 ```
 
-### Modify Colors & Theme
-You can adjust colors inside the `THEME` dictionary. The system will write the styles so that it automatically switches color palettes based on light or dark browser preferences.
+### Modify Featured Projects
+Add, modify, or remove projects from the `PROJECTS_LIST` inside `config.py` to change what displays inside `projects.svg`:
 ```python
-THEME = {
-    "dark": {
-        "bg": "#0d1117",
-        "bg_card": "#161b22",
-        "accent": "#58a6ff",
-        # ...
+PROJECTS_LIST = [
+    {
+        "title": "Project Name",
+        "description": "Short description...",
+        "stack": ["React", "Python"],
+        "status": "production",
+        "stars": 42,
+        "color": "#3178c6",
+        "logo_text": "PN"
     },
-    "light": {
-        "bg": "#ffffff",
-        "bg_card": "#f6f8fa",
-        "accent": "#0969da",
-        # ...
-    }
-}
+    # ...
+]
 ```
 
 ### Adjust ASCII Portrait Settings
 Modify the `PORTRAIT` settings inside `scripts/config.py`:
-- `width`: Number of characters wide (default 100). Higher numbers increase portrait detail but increase file size.
+- `width`: Number of characters wide (default 90). Higher numbers increase portrait detail but increase file size.
 - `density_ramp`: The characters mapping from dark to light. Standard is `" .`:-=+*cs#%@"`.
 - `gamma`: Adjusts light mapping. Decreasing gamma will darken the image; increasing it will make midtones brighter.
 
@@ -174,17 +172,31 @@ graph TD
     M -->|Embeds font styles & CSS vars| N[assets/stats.svg]
     M -->|Embeds font styles & CSS vars| O[assets/year.svg]
     
-    D -->|Generates cards| N
-    D -->|Generates cards| P[assets/streak.svg]
-    D -->|Generates cards| Q[assets/languages.svg]
+    D -->|Generates stats| N
+    D -->|Generates streak| P[assets/streak.svg]
+    D -->|Generates languages| Q[assets/languages.svg]
     E -->|Generates calendar| O
     R[generate_headings.py] -->|Generates headings & typing| S[assets/typing.svg]
     R -->|Generates skills grid| T[assets/skills.svg]
+    
+    U[generate_projects.py] -->|Generates project panels| V[assets/projects.svg]
+    W[generate_dividers.py] -->|Generates particle line| X[assets/divider.svg]
 ```
 
 ---
 
-## 5. Troubleshooting & FAQ
+## 5. Technical Details: Slot-Machine Digit Counters
+
+Because JavaScript is forbidden on GitHub README pages, we implement rolling count-up animations for all statistics inside `stats.svg` and `streak.svg` using pure SVG/SMIL. 
+
+1. **Digital Wheel Stacking**: The script splits each metric (like `752` commits) into individual digits.
+2. **Clipping Boundary**: For each digit, it constructs a `clipPath` bounding box matching the font height.
+3. **Translational Animation**: It renders a vertical column containing digits `0-9` stacked consecutively.
+4. **SMIL Animation**: It applies a `<animateTransform>` translation shifting the vertical coordinate up by `-digit * digit_height` using a smooth cubic-bezier easing curve, making the counter roll when the page load caches trigger.
+
+---
+
+## 6. Troubleshooting & FAQ
 
 ### Issue: "cv2 module not found" or "GLX errors"
 **Solution**: Ensure your host environment has mesa-libGL installed (e.g. `sudo apt install libgl1-mesa-glx`). The project uses `opencv-python-headless` in `requirements.txt` to avoid needing heavy windowing system libraries, but basic GL support is still required.
@@ -194,10 +206,3 @@ graph TD
 
 ### Issue: GitHub Action fails with "Permission to repo denied"
 **Solution**: By default, GitHub Actions workflows might run with read-only permissions. The workflow in this project explicitly requests `permissions: contents: write` which overrides this. If it still fails, go to your repository Settings -> Actions -> General -> Workflow permissions and select "Read and write permissions".
-
----
-
-## 6. Performance & Optimization
-
-- **Font Subsetting**: The system downloads a regular JetBrains Mono font (~1.2MB). If embedded in raw format, it would make the SVGs too heavy. By executing a subset pass with `fontTools`, the final WOFF2 file size shrinks to ~12KB, keeping SVG sizes extremely small.
-- **Urllib Implementation**: By using the Python standard library's `urllib.request` instead of importing heavy HTTP libraries like `requests` or `httpx`, execution start times are maximized and dependency bloat is eliminated.

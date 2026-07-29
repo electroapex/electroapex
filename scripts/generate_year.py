@@ -38,6 +38,8 @@ def generate_year_svg(data):
     dark = THEME["dark"]
     light = THEME["light"]
     
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    
     extra_styles = f"""
     :root {{
         --l0: {dark["heatmap"][0]};
@@ -77,6 +79,12 @@ def generate_year_svg(data):
     .level-3 {{ fill: var(--l3); }}
     .level-4 {{ fill: var(--l4); }}
     
+    .current-day-pulse {{
+        stroke: var(--accent);
+        stroke-width: 1px;
+        animation: pulseToday 1.8s ease-in-out infinite;
+    }}
+    
     .label-month {{
         font-family: 'JetBrains Mono', sans-serif;
         font-size: 10px;
@@ -90,6 +98,10 @@ def generate_year_svg(data):
     
     @keyframes fadeInSquare {{
         to {{ opacity: 1; }}
+    }}
+    @keyframes pulseToday {{
+        0%, 100% {{ stroke-opacity: 0.4; stroke-width: 1px; }}
+        50% {{ stroke-opacity: 1.0; stroke-width: 2.2px; filter: drop-shadow(0 0 2px var(--accent)); }}
     }}
     """
     
@@ -128,14 +140,17 @@ def generate_year_svg(data):
             row_idx = day["weekday"]
             count = day["contributionCount"]
             level = get_contribution_level(count)
+            is_today = (day["date"] == today_str)
             
             x = left_padding + col_idx * (cell_size + cell_spacing)
             y = top_padding + row_idx * (cell_size + cell_spacing)
             
             anim_delay = col_idx * 12 + row_idx * 4
             
+            pulse_class = " current-day-pulse" if is_today else ""
+            
             svg.add_element(
-                f'<rect x="{x}" y="{y}" class="day-cell level-{level}" '
+                f'<rect x="{x}" y="{y}" class="day-cell level-{level}{pulse_class}" '
                 f'style="animation-delay: {anim_delay}ms;" />'
             )
             

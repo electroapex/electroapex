@@ -1,5 +1,5 @@
 import os
-from scripts.config import ASSETS_DIR, HEADINGS, TYPING_LINES, BACKGROUND_SVG_PATH, TYPING_SVG_PATH
+from scripts.config import ASSETS_DIR, HEADINGS, BACKGROUND_SVG_PATH, TYPING_SVG_PATH
 from scripts.svg import SVGDocument
 from scripts.utils import logger
 
@@ -57,12 +57,10 @@ def generate_heading_svg(text, filepath):
     svg.save(filepath)
 
 def generate_typing_svg():
-    """Generates a terminal typing animation SVG."""
-    logger.info(f"Generating terminal typing SVG -> {TYPING_SVG_PATH}")
+    """Generates a highly realistic, interactive infinite terminal simulator SVG."""
+    logger.info(f"Generating infinite terminal typing SVG -> {TYPING_SVG_PATH}")
     width = 775
-    height = 140
-    
-    charset = "".join(TYPING_LINES) + "⚡💻🚀1234567890:-. _+,"
+    height = 200
     
     extra_styles = """
     .terminal-body {
@@ -84,13 +82,45 @@ def generate_typing_svg():
         font-size: 13px;
         fill: var(--text);
     }
-    .terminal-cursor {
+    .term-prompt { fill: var(--accent-green); font-weight: bold; }
+    .term-user { fill: var(--accent); font-weight: bold; }
+    .term-keyword { fill: var(--accent-purple); }
+    .term-string { fill: var(--accent-orange); }
+    .term-symbol { fill: var(--text-muted); }
+    
+    .spinner-arc {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 2px;
+        stroke-linecap: round;
+        transform-origin: 35px 82px;
+    }
+    .progress-bar-fill {
+        fill: var(--accent-green);
+        rx: 2px;
+    }
+    .progress-bar-track {
+        fill: rgba(255, 255, 255, 0.05);
+        rx: 2px;
+    }
+    .cursor-block {
         fill: var(--accent);
     }
     """
     
+    # Collect characters for subsetting
+    charset = (
+        "electroapex@github:~$ npx profile --runFetching stats from GraphQL..."
+        "Loading metrics[============>] 100% Success! Loaded 14 assets, 42 repos, 752 commits."
+        "Status: Active | Language Stack: TS, Rust, Python, PHPAudio sound placeholders: beep"
+        "0123456789.:;+-_()[]/|\\ "
+    )
+    
     svg = SVGDocument(width, height, subset_chars=charset, extra_styles=extra_styles)
+    
+    # Base layout
     svg.add_element(f"""
+    <!-- Terminal window body -->
     <rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" class="terminal-body" />
     <path d="M 0.5,8 A 8,8 0 0,1 8,0.5 L {width - 8},0.5 A 8,8 0 0,1 {width - 0.5},8 L {width - 0.5},30 L 0.5,30 Z" class="terminal-header" />
     <circle cx="20" cy="15" class="terminal-dot" fill="#ff5f56" />
@@ -98,52 +128,101 @@ def generate_typing_svg():
     <circle cx="60" cy="15" class="terminal-dot" fill="#27c93f" />
     <text x="{width // 2}" y="20" fill="var(--text-muted)" font-family="sans-serif" font-size="11" text-anchor="middle" font-weight="600">bash - electroapex@terminal</text>
     """)
-
-    char_width = 7.8
-    y_starts = [58, 83, 108]
-    durations = [2.0, 2.0, 2.0]
-    delays = [0.2, 2.4, 4.6]
     
-    for i, line in enumerate(TYPING_LINES):
-        length = len(line)
-        line_w = round(length * char_width, 1)
-        clip_id = f"clip-line-{i}"
-        
-        svg.add_def(f"""
-        <clipPath id="{clip_id}">
-            <rect x="25" y="{y_starts[i] - 14}" height="22" width="0">
-                <animate attributeName="width" from="0" to="{line_w}" dur="{durations[i]}s" begin="{delays[i]}s" fill="freeze" />
-            </rect>
-        </clipPath>
-        """)
-        
-        svg.add_element(f"""
-        <text x="25" y="{y_starts[i]}" class="terminal-text" clip-path="url(#{clip_id})">{line}</text>
-        """)
-        
-        cursor_delay = delays[i]
-        cursor_dur = durations[i]
-        cursor_end = cursor_delay + cursor_dur
-        
-        if i < len(TYPING_LINES) - 1:
-            next_delay = delays[i+1]
-            vis_attr = f"""
-            <animate attributeName="visibility" from="hidden" to="visible" begin="{cursor_delay}s" dur="{next_delay - cursor_delay}s" fill="freeze" />
-            <animate attributeName="visibility" to="hidden" begin="{next_delay}s" fill="freeze" />
-            """
-        else:
-            vis_attr = f"""
-            <animate attributeName="visibility" from="hidden" to="visible" begin="{cursor_delay}s" fill="freeze" />
-            """
-            
-        svg.add_element(f"""
-        <rect x="25" y="{y_starts[i] - 12}" width="8" height="14" class="terminal-cursor">
-            {vis_attr}
-            <animate attributeName="x" from="25" to="{25 + line_w}" begin="{cursor_delay}s" dur="{cursor_dur}s" fill="freeze" />
-            <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" begin="{cursor_end}s" />
+    # Prompt line 1
+    # Prompt is: electroapex@github:~$ npx profile --run
+    svg.add_element(f"""
+    <!-- Prompt 1 prefix -->
+    <text x="25" y="55" class="terminal-text">
+        <tspan class="term-user">electroapex</tspan><tspan class="term-symbol">@</tspan><tspan class="term-prompt">github</tspan><tspan class="term-symbol">:~$ </tspan>
+    </text>
+    """)
+    
+    # Animated typed text on Line 1: "npx profile --run"
+    # Word character width ~ 7.8px
+    typed_text_w = round(len("npx profile --run") * 7.8, 1)
+    
+    svg.add_def("""
+    <!-- ClipPath to animate typing loop -->
+    <clipPath id="term-clip-1">
+        <rect x="180" y="40" height="22" width="0">
+            <animate attributeName="width" values="0;135;135;135;0;0" keyTimes="0;0.12;0.78;0.88;0.96;1" dur="16s" repeatCount="indefinite" />
         </rect>
-        """)
-
+    </clipPath>
+    """)
+    
+    svg.add_element(f"""
+    <!-- Line 1 typed command -->
+    <text x="180" y="55" class="terminal-text" clip-path="url(#term-clip-1)">
+        <tspan class="term-keyword">npx</tspan> profile --run
+    </text>
+    """)
+    
+    # Cursor 1 (for typing line 1)
+    svg.add_element(f"""
+    <rect x="180" y="43" width="8" height="14" class="cursor-block">
+        <animate attributeName="x" values="180;315;315;315;180;180" keyTimes="0;0.12;0.78;0.88;0.96;1" dur="16s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite" />
+        <animate attributeName="visibility" values="visible;hidden;visible" keyTimes="0;0.17;1" dur="16s" repeatCount="indefinite" />
+    </rect>
+    """)
+    
+    # --- Loading Execution (starts at t=2.8s, finishes at t=5.0s) ---
+    svg.add_element(f"""
+    <!-- Execution indicators group -->
+    <g>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.17;0.18;0.76;0.78;1" dur="16s" repeatCount="indefinite" />
+        
+        <!-- Loading spinner -->
+        <path d="M 35 77 A 5 5 0 1 1 34.9 77" class="spinner-arc" stroke-dasharray="10 5">
+            <animateTransform attributeName="transform" type="rotate" from="0 35 82" to="360 35 82" dur="1s" repeatCount="indefinite" />
+        </path>
+        <text x="50" y="87" class="terminal-text" fill="var(--text-muted)">Fetching metrics from GraphQL...</text>
+        
+        <!-- Progress bar track and fill -->
+        <rect x="35" y="102" width="150" height="6" class="progress-bar-track" />
+        <rect x="35" y="102" width="0" height="6" class="progress-bar-fill">
+            <animate attributeName="width" values="0;0;150;150;0;0" keyTimes="0;0.22;0.36;0.76;0.78;1" dur="16s" repeatCount="indefinite" />
+        </rect>
+        <text x="195" y="108" class="terminal-text" fill="var(--accent-green)" font-weight="bold">
+            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.34;0.36;0.76;0.78" dur="16s" repeatCount="indefinite" />
+            100%
+        </text>
+    </g>
+    """)
+    
+    # --- Output Section (starts appearing at t=6.0s) ---
+    svg.add_element(f"""
+    <!-- Terminal success output details -->
+    <g>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.38;0.40;0.76;0.78;1" dur="16s" repeatCount="indefinite" />
+        
+        <!-- Output Line 1 -->
+        <text x="25" y="132" class="terminal-text" fill="var(--accent)">
+            &gt; Success! Loaded 14 assets, 42 repos, 752 commits.
+        </text>
+        
+        <!-- Output Line 2 -->
+        <text x="25" y="152" class="terminal-text" fill="var(--text-muted)">
+            &gt; Status: <tspan class="term-prompt">Active</tspan> | Language Stack: <tspan class="term-keyword">TS, Rust, Python, PHP</tspan>
+        </text>
+    </g>
+    """)
+    
+    # Prompt line 2 (appears at bottom at t=7.0s, showing cursor blinking)
+    svg.add_element(f"""
+    <g>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.44;0.46;0.76;0.78;1" dur="16s" repeatCount="indefinite" />
+        <text x="25" y="177" class="terminal-text">
+            <tspan class="term-user">electroapex</tspan><tspan class="term-symbol">@</tspan><tspan class="term-prompt">github</tspan><tspan class="term-symbol">:~$ </tspan>
+        </text>
+        <!-- Blinking cursor at prompt 2 -->
+        <rect x="180" y="165" width="8" height="14" class="cursor-block">
+            <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite" />
+        </rect>
+    </g>
+    """)
+    
     svg.save(TYPING_SVG_PATH)
 
 def generate_background_svg():
@@ -215,10 +294,8 @@ def generate_background_svg():
     
     <!-- Text contents -->
     <g transform="translate(45, 0)">
-        <text x="0" y="60" class="banner-title">M. HUIZAIFA HAFEEZ</text>
+        <text x="0" y="60" class="banner-title">M. HUZAFA HAFEEZ</text>
         <text x="0" y="88" class="banner-subtitle">Full Stack Engineer &amp; Problem Solver</text>
-        
-        <!-- Decorative tags -->
         <text x="0" y="108" font-family="'JetBrains Mono'" font-size="10" fill="#3fb950" class="banner-tag">&lt;developer status="active" /&gt;</text>
     </g>
     """)
@@ -280,7 +357,6 @@ def generate_skills_svg():
     }
     """
     
-    # Compile text characters for font subsetting
     charset = (
         "LanguagesFrameworksDatabasesTools"
         "JavaScriptTypeScriptPythonJavaC++C#RustPHPKotlinHTML5CSS3SassSQLBash"
@@ -293,7 +369,6 @@ def generate_skills_svg():
     svg = SVGDocument(width, height, subset_chars=charset, extra_styles=extra_styles)
     svg.add_element('<rect x="0.5" y="0.5" width="774" height="239" class="card" />')
     
-    # Categories definition with coordinate logic and items
     categories = [
         {
             "title": "Languages",
@@ -338,9 +413,7 @@ def generate_skills_svg():
     
     badge_index = 0
     for cat in categories:
-        # Category block border
         svg.add_element(f'<rect x="{cat["x"]}" y="{cat["y"]}" width="{cat["w"]}" height="{cat["h"]}" class="cat-border" />')
-        # Category Title
         svg.add_element(f'<text x="{cat["x"] + 15}" y="{cat["y"] + 24}" class="skill-cat-title">{cat["title"]}</text>')
         
         curr_x = cat["x"] + 15
@@ -355,11 +428,9 @@ def generate_skills_svg():
                 curr_x = cat["x"] + 15
                 curr_y += line_height
                 
-            # Staggered animation delay
             anim_delay = badge_index * 25
             badge_index += 1
             
-            # Wrap in group for animations
             svg.add_element(f"""
             <g class="badge-group" style="animation-delay: {anim_delay}ms;">
                 <rect x="{curr_x}" y="{curr_y}" width="{badge_w}" height="18" class="badge-rect" />
@@ -376,7 +447,6 @@ def generate_all_headings():
     """Generates all configured heading SVGs, background, typing, and skills cards."""
     os.makedirs(ASSETS_DIR, exist_ok=True)
     
-    # Write default headings
     for name, path in HEADINGS.items():
         display_name = name.capitalize()
         if name == "about":

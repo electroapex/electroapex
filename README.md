@@ -3,87 +3,129 @@
 </p>
 
 <p align="center">
-  <img src="assets/typing.svg" width="100%" alt="Terminal Typing Simulator" />
+  <img src="assets/typing.svg" width="100%" alt="Terminal Simulator" />
+</p>
+
+<p align="center">
+  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
 </p>
 
 <br/>
 
-<!-- Side-by-Side Dashboard Layout -->
+<!-- Dashboard: Scanline ASCII Portrait + rolling stats, streak flame and languages -->
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
     <td width="48%" valign="top">
-      <!-- Left Column: ASCII Portrait -->
-      <img src="assets/portrait.svg" width="100%" alt="ASCII Portrait" />
+      <img src="assets/portrait.svg" width="100%" alt="ASCII Scanner Portrait" />
     </td>
     <td width="4%"></td>
     <td width="48%" valign="top">
-      <!-- Right Column: Developer Stats, Contribution Streak, and Top Languages -->
-      <img src="assets/stats.svg" width="100%" alt="Developer Stats" />
+      <img src="assets/stats.svg" width="100%" alt="Rolling Developer Stats" />
       <br/><br/>
-      <img src="assets/streak.svg" width="100%" alt="Contribution Streak" />
+      <img src="assets/streak.svg" width="100%" alt="Flickering Streak Tracker" />
       <br/><br/>
-      <img src="assets/languages.svg" width="100%" alt="Languages Chart" />
+      <img src="assets/languages.svg" width="100%" alt="Top Languages Chart" />
     </td>
   </tr>
 </table>
 
 <br/>
 
-<!-- Yearly Heatmap Section -->
+<p align="center">
+  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
+</p>
+
+<br/>
+
+<!-- Heatmap contribution calendar with pulse today cell -->
 <p align="center">
   <img src="assets/year.svg" width="100%" alt="Yearly Contribution Heatmap" />
 </p>
 
 <br/>
 
-<!-- About Section -->
-<img src="assets/heading-about.svg" alt="About Me Heading" />
-
-Hi, I'm **M. Huzaifa Hafeez**, a full stack developer passionate about building modern, efficient, and user-friendly applications. I enjoy turning ideas into real-world projects while continuously expanding my skills in React, TypeScript, PHP, Python, and Django.
-
-- 🔭 &nbsp;I'm currently working on the **Algo Union Website**
-- 🌱 &nbsp;I'm currently learning **Rust and DSA**
-- 💬 &nbsp;Ask me about **JavaScript, TypeScript, PHP, Python, C++, Java, Kotlin, React, Django, Laravel, Express.js**
-- 😄 &nbsp;Pronouns: **ElectroApex**
-
-<br/>
-
-<!-- Technical Skills Section -->
-<img src="assets/heading-skills.svg" alt="Technical Skills Heading" />
-
 <p align="center">
-  <img src="assets/skills.svg" width="100%" alt="Technical Skills Matrix" />
+  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
 </p>
 
 <br/>
 
-<!-- Projects Section -->
-<img src="assets/heading-projects.svg" alt="Featured Projects Heading" />
+<!-- About section header and info cards -->
+<p align="left">
+  <img src="assets/heading-about.svg" alt="About Me Heading" />
+</p>
 
-### 🔗 [Algo Union](https://github.com/electroapex/algo-union)
-A specialized learning and testing platform for data structures and algorithms, featuring real-time code evaluation, visual trace graphs, and curated study tracks.
-* **Stack**: TypeScript, React, Express, MongoDB
+Hi, I'm **M. Huzaifa Hafeez**, a full stack engineer dedicated to building modern, performant, and developer-grade applications. I turn clean architectural designs into real-world code systems while maintaining safe, readable, and highly scalable codebases.
 
-### 🔗 [Django E-Commerce](https://github.com/electroapex/django-ecommerce)
-A high-performance e-commerce platform incorporating full-text search, multi-tenant merchant storefronts, automated invoicing, and stripe checkout integration.
-* **Stack**: Python, Django, PostgreSQL, Tailwind CSS
-
-### 🔗 [Rust DSA](https://github.com/electroapex/rust-dsa)
-An open-source library implementing advanced data structures and algorithms in idiomatic Rust, with extensive unit test coverage and performance benchmarks.
-* **Stack**: Rust, Cargo, Github Actions
+<!-- Premium Information Columns -->
+<table border="0" cellpadding="10" cellspacing="0" width="100%">
+  <tr>
+    <td width="48%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; background-color: #161b22;">
+      <h4>🔭 Current Focus</h4>
+      <p>Building <strong>Algo Union</strong>, a specialized interactive code evaluation and visual tracer platform for studying data structures and algorithms.</p>
+    </td>
+    <td width="4%"></td>
+    <td width="48%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; background-color: #161b22;">
+      <h4>🌱 Continuous Learning</h4>
+      <p>Researching advanced <strong>Rust compile-time assertions</strong>, memory boundaries, and safe concurrency patterns in systems programming.</p>
+    </td>
+  </tr>
+</table>
 
 <br/>
 
-<!-- Contact Section -->
-<img src="assets/heading-contact.svg" alt="Get in Touch Heading" />
+<p align="center">
+  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
+</p>
 
-Feel free to reach out if you'd like to collaborate, discuss engineering topics, or just say hello!
+<br/>
 
-* 📧 Email: [huzaifa.hafeez.dev@gmail.com](mailto:huzaifa.hafeez.dev@gmail.com)
-* 💼 LinkedIn: [M. Huzaifa Hafeez](https://linkedin.com/in/electroapex)
-* 🌐 Website: [electroapex.github.io](https://electroapex.github.io)
+<!-- Skills section header and Skills SVG Grid -->
+<p align="left">
+  <img src="assets/heading-skills.svg" alt="Technical Skills Heading" />
+</p>
+
+<p align="center">
+  <img src="assets/skills.svg" width="100%" alt="Technical Skills Grid" />
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
+</p>
+
+<br/>
+
+<!-- Projects section header and Projects SVG Card Panel -->
+<p align="left">
+  <img src="assets/heading-projects.svg" alt="Featured Projects Heading" />
+</p>
+
+<p align="center">
+  <img src="assets/projects.svg" width="100%" alt="Featured Projects Card Grid" />
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="assets/divider.svg" width="100%" alt="Section Divider" />
+</p>
+
+<br/>
+
+<!-- Contact section header and links -->
+<p align="left">
+  <img src="assets/heading-contact.svg" alt="Get in Touch Heading" />
+</p>
+
+Feel free to connect for collaborations, architectural reviews, or system designs:
+
+* 📧 **Email**: [huzaifa.hafeez.dev@gmail.com](mailto:huzaifa.hafeez.dev@gmail.com)
+* 💼 **LinkedIn**: [M. Huzaifa Hafeez](https://linkedin.com/in/electroapex)
+* 🌐 **Portfolio**: [electroapex.github.io](https://electroapex.github.io)
 
 ---
 <p align="center">
-  <i>⭐️ Profile generated locally by Python and updated nightly via GitHub Actions. <a href="scripts/config.py">View Setup</a>.</i>
+  <i>⭐️ Complete self-generating interactive profile generated locally by Python and updated nightly. <a href="scripts/config.py">View Setup</a>.</i>
 </p>

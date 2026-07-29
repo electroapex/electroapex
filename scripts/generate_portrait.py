@@ -193,17 +193,38 @@ def main():
     .ascii-row {{
         white-space: pre;
     }}
-    /* Pulse glow effect on text grid */
+    /* CRT Phosphor Shimmer + Breathing Glow */
     @keyframes pulse-glow {{
         0%, 100% {{ opacity: 0.85; filter: drop-shadow(0 0 1px var(--accent)); }}
-        50% {{ opacity: 1.0; filter: drop-shadow(0 0 3px var(--accent)); }}
+        50% {{ opacity: 0.98; filter: drop-shadow(0 0 4px var(--accent)); }}
+    }}
+    @keyframes crt-shimmer {{
+        0%, 100% {{ opacity: 0.96; }}
+        20% {{ opacity: 0.94; }}
+        40% {{ opacity: 0.98; }}
+        60% {{ opacity: 0.92; }}
+        80% {{ opacity: 0.96; }}
     }}
     .ascii-container {{
-        animation: pulse-glow 4s ease-in-out infinite;
+        animation: pulse-glow 4s ease-in-out infinite, crt-shimmer 0.15s ease-in-out infinite;
     }}
+    
+    /* Neon flowing border */
+    .neon-border {{
+        fill: none;
+        stroke: url(#border-flow-grad);
+        stroke-width: 1.5px;
+        stroke-dasharray: 150 400;
+        animation: borderFlow 8s linear infinite;
+    }}
+    @keyframes borderFlow {{
+        from {{ stroke-dashoffset: 550; }}
+        to {{ stroke-dashoffset: 0; }}
+    }}
+    
     .scan-line {{
         fill: var(--accent);
-        opacity: 0.6;
+        opacity: 0.55;
         filter: url(#scan-glow);
     }}
     """
@@ -212,16 +233,34 @@ def main():
     
     svg = SVGDocument(svg_w, svg_h, subset_chars=subset_chars, extra_styles=extra_styles)
     
-    # Add filter for scanline glow
-    svg.add_def("""
+    # Glow filter and scanline textures
+    svg.add_def(f"""
     <filter id="scan-glow" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="3" result="blur" />
+        <feGaussianBlur stdDeviation="4" result="blur" />
         <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
         </feMerge>
     </filter>
+    
+    <!-- Flowing neon border gradient -->
+    <linearGradient id="border-flow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="var(--accent)" />
+        <stop offset="50%" stop-color="var(--accent-purple)" />
+        <stop offset="100%" stop-color="var(--accent)" />
+    </linearGradient>
+    
+    <!-- CRT grid horizontal scanner overlay -->
+    <pattern id="crt-scanline-pattern" width="100" height="3" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="100" y2="0" stroke="#000000" stroke-width="0.8" opacity="0.22" />
+    </pattern>
     """)
+    
+    # Outer border rect with card classes
+    svg.add_element(f'<rect x="0.5" y="0.5" width="{svg_w - 1}" height="{svg_h - 1}" class="card" />')
+    
+    # Flowing neon outline rect
+    svg.add_element(f'<rect x="0.5" y="0.5" width="{svg_w - 1}" height="{svg_h - 1}" rx="8" class="neon-border" />')
     
     # Add grouping element for animation
     svg_content = ['<g class="ascii-container">', f'<text x="10" y="15" class="ascii-art">']
@@ -231,11 +270,14 @@ def main():
     svg_content.append('</text>')
     svg_content.append('</g>')
     
-    # Add scanline overlay
+    # CRT Scanline filter overlay (placed on top of text but below scanning beam)
+    svg_content.append(f'<rect width="{svg_w}" height="{svg_h}" fill="url(#crt-scanline-pattern)" pointer-events="none" />')
+    
+    # Scanning laser beam
     svg_content.append(f"""
-    <!-- Vertical scanning beam -->
-    <rect x="10" y="10" width="{svg_w - 20}" height="2" class="scan-line">
-        <animate attributeName="y" values="10; {svg_h - 10}; 10" dur="6s" repeatCount="indefinite" />
+    <!-- Scanning beam overlay -->
+    <rect x="5" y="5" width="{svg_w - 10}" height="3" class="scan-line">
+        <animate attributeName="y" values="5; {svg_h - 10}; 5" dur="4.5s" repeatCount="indefinite" />
     </rect>
     """)
     

@@ -17,7 +17,7 @@ FONTS_DIR = os.path.join(ASSETS_DIR, "fonts")
 for folder in [ASSETS_DIR, IMAGES_DIR, FONTS_DIR]:
     os.makedirs(folder, exist_ok=True)
 
-# GitHub Token for local running (fallback to environment variables)
+# GitHub Token for local running
 GITHUB_TOKEN = os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
 
 # Font Settings
@@ -39,7 +39,7 @@ THEME = {
         "accent_purple": "#bc8cff",
         "accent_orange": "#f0883e",
         "sparkline": "#58a6ff",
-        "sparkline_fill": "rgba(88, 166, 255, 0.1)",
+        "sparkline_fill": "rgba(88, 166, 255, 0.05)",
         "heatmap": ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
     },
     "light": {
@@ -53,7 +53,7 @@ THEME = {
         "accent_purple": "#8250df",
         "accent_orange": "#bc4c00",
         "sparkline": "#0969da",
-        "sparkline_fill": "rgba(9, 105, 218, 0.1)",
+        "sparkline_fill": "rgba(9, 105, 218, 0.05)",
         "heatmap": ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
     }
 }
@@ -66,9 +66,9 @@ PORTRAIT = {
         os.path.join(ASSETS_DIR, "M Huzaifa Hafeez.png")
     ],
     "output_path": os.path.join(ASSETS_DIR, "portrait.svg"),
-    "width": 100,               # Number of columns (characters wide)
-    "height": 0,                # 0 for auto-calculate based on aspect ratio
-    "char_aspect": 0.55,        # Width-to-height ratio of characters in font
+    "width": 90,               # Width in characters
+    "height": 0,                # Auto-calculate
+    "char_aspect": 0.55,
     "density_ramp": " .`:-=+*cs#%@",
     "bilateral_d": 9,
     "bilateral_sigma_color": 75,
@@ -86,6 +86,8 @@ LANGUAGES_SVG_PATH = os.path.join(ASSETS_DIR, "languages.svg")
 YEAR_SVG_PATH = os.path.join(ASSETS_DIR, "year.svg")
 BACKGROUND_SVG_PATH = os.path.join(ASSETS_DIR, "background.svg")
 TYPING_SVG_PATH = os.path.join(ASSETS_DIR, "typing.svg")
+DIVIDER_SVG_PATH = os.path.join(ASSETS_DIR, "divider.svg")
+PROJECTS_SVG_PATH = os.path.join(ASSETS_DIR, "projects.svg")
 
 # Headings SVG Mapping
 HEADINGS = {
@@ -94,9 +96,40 @@ HEADINGS = {
     "contact": os.path.join(ASSETS_DIR, "heading-contact.svg")
 }
 
-# Typing Lines Configuration
+# Terminal Typing Lines
 TYPING_LINES = [
     "⚡ Passionate about full stack web development and problem solving...",
     "💻 React, TypeScript, PHP, Python, C++, SQL, Rust...",
     "🚀 Turning complex ideas into elegant, production-ready code."
+]
+
+# Featured Projects Config
+PROJECTS_LIST = [
+    {
+        "title": "Algo Union",
+        "description": "Interactive DS & Algorithms learning platform featuring code playgrounds and live tracing.",
+        "stack": ["TypeScript", "React", "Express", "MongoDB"],
+        "status": "production",
+        "stars": 24,
+        "color": "#3178c6",
+        "logo_text": "AU"
+    },
+    {
+        "title": "Django E-Commerce",
+        "description": "Multi-tenant merchant storefront engine integrating Stripe checkout and analytics boards.",
+        "stack": ["Python", "Django", "PostgreSQL", "Tailwind"],
+        "status": "active",
+        "stars": 15,
+        "color": "#092e20",
+        "logo_text": "DE"
+    },
+    {
+        "title": "Rust DSA",
+        "description": "High-performance structures and algorithms library built using idiomatic, safe Rust compiler constraints.",
+        "stack": ["Rust", "Cargo", "Github Actions"],
+        "status": "stable",
+        "stars": 12,
+        "color": "#dee5e6",
+        "logo_text": "RD"
+    }
 ]
