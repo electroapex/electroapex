@@ -50,7 +50,7 @@ def generate_stats_svg(data):
         ("Followers",           followers,   "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"),
     ]
 
-    CARD_H = PAD + 20 + GAP + len(STATS)*26 + GAP + 24 + PAD
+    CARD_H = PAD + 20 + GAP + len(STATS)*26 + PAD
     extra = """
     .sparkline-line{fill:none;stroke:var(--accent);stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:800;stroke-dashoffset:800;animation:drawLine 2s .3s forwards;}
     .sparkline-area{fill:var(--sparkline-fill);}
@@ -83,10 +83,7 @@ def generate_stats_svg(data):
         svg.add_element(f'<path d="{line_path}" class="sparkline-line" />')
         svg.add_element(f'<circle cx="{last_pt[0]:.1f}" cy="{last_pt[1]:.1f}" r="3.5" class="sparkline-dot" />')
 
-    leg_y = CARD_H-PAD-4
-    svg.add_element(f'<rect x="{SPK_X1}" y="{leg_y-14}" width="{SPK_X2-SPK_X1}" height="20" fill="none" stroke="var(--border)" stroke-width=".5" rx="4" />')
-    svg.add_element(f'<text x="{SPK_X1+8}" y="{leg_y}" class="stat-label" font-size="10">Followers: <tspan class="stat-val" font-size="10">{followers}</tspan></text>')
-    svg.add_element(f'<text x="{SPK_X1+105}" y="{leg_y}" class="stat-label" font-size="10">Following: <tspan class="stat-val" font-size="10">{following}</tspan></text>')
+
     svg.save(STATS_SVG_PATH)
 
 
