@@ -27,7 +27,6 @@ def generate_year_svg(data):
     weeks = calendar.get("weeks", [])
     total_conts = calendar.get("totalContributions", 0)
     
-    # Calculate spacing and sizes
     cell_size = 10
     cell_spacing = 3
     left_padding = 40
@@ -36,7 +35,6 @@ def generate_year_svg(data):
     width = 775
     height = 175
     
-    # Theme-adaptive variables for level colors
     dark = THEME["dark"]
     light = THEME["light"]
     
@@ -64,9 +62,16 @@ def generate_year_svg(data):
         ry: 2px;
         opacity: 0;
         animation: fadeInSquare 0.4s ease-out forwards;
+        transition: transform 0.15s ease, filter 0.15s ease, fill 0.15s ease;
+        transform-box: fill-box;
+        transform-origin: center;
+    }}
+    .day-cell:hover {{
+        transform: scale(1.4);
+        filter: brightness(1.2) drop-shadow(0 0 2px var(--accent));
+        cursor: pointer;
     }}
     .level-0 {{ fill: var(--l0); }}
-    .level-1 {{ fill: fill: var(--l1); }} /* Fallback color for levels */
     .level-1 {{ fill: var(--l1); }}
     .level-2 {{ fill: var(--l2); }}
     .level-3 {{ fill: var(--l3); }}
@@ -91,43 +96,35 @@ def generate_year_svg(data):
     charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ., :;%#&_+-()[]"
     svg = SVGDocument(width, height, subset_chars=charset, extra_styles=extra_styles)
     
-    # Add background card
     svg.add_element('<rect x="0.5" y="0.5" width="774" height="174" class="card" />')
     
-    # Add Header Title
     svg.add_element(f"""
     <text x="20" y="25" class="title">Yearly Contributions</text>
     <text x="180" y="24" class="label" font-size="11">{total_conts:,} contributions in the past year</text>
     """)
     
-    # Render Weekday labels (Mon, Wed, Fri) on the left side
     day_labels = [("Mon", 1), ("Wed", 3), ("Fri", 5)]
     for name, row_idx in day_labels:
         y = top_padding + row_idx * (cell_size + cell_spacing) + 9
         svg.add_element(f'<text x="12" y="{y}" class="label-day">{name}</text>')
         
-    # Render Grid & Months
     prev_month = None
     month_labels = []
     
     for col_idx, week in enumerate(weeks):
         days = week.get("contributionDays", [])
         
-        # Check if the month changed in the first day of the week to place month label
         if days:
             first_day_date = datetime.strptime(days[0]["date"], "%Y-%m-%d")
             month_name = first_day_date.strftime("%b")
             
             if month_name != prev_month:
                 x_pos = left_padding + col_idx * (cell_size + cell_spacing)
-                # Keep month labels spaced out to prevent overlap
                 if not month_labels or (x_pos - month_labels[-1][1]) > 35:
                     month_labels.append((month_name, x_pos))
                     prev_month = month_name
                     
-        # Draw day squares
         for day in days:
-            # weekday: 0 is Sunday, 6 is Saturday
             row_idx = day["weekday"]
             count = day["contributionCount"]
             level = get_contribution_level(count)
@@ -135,20 +132,16 @@ def generate_year_svg(data):
             x = left_padding + col_idx * (cell_size + cell_spacing)
             y = top_padding + row_idx * (cell_size + cell_spacing)
             
-            # Animation delay sweeps left-to-right
-            anim_delay = col_idx * 15 + row_idx * 5
+            anim_delay = col_idx * 12 + row_idx * 4
             
             svg.add_element(
                 f'<rect x="{x}" y="{y}" class="day-cell level-{level}" '
                 f'style="animation-delay: {anim_delay}ms;" />'
             )
             
-    # Render Month labels at the top
     for month_name, x_pos in month_labels:
         svg.add_element(f'<text x="{x_pos}" y="35" class="label-month">{month_name}</text>')
         
-    # Render Legend at the bottom right
-    # Legend starts around x = 600, y = 145
     legend_x = 580
     legend_y = 145
     svg.add_element(f"""
@@ -161,7 +154,6 @@ def generate_year_svg(data):
     <text x="{legend_x + 68}" y="{legend_y + 9}" class="label-day" font-size="10">More</text>
     """)
     
-    # Render current date update info at the bottom left
     update_date = datetime.now().strftime("%Y-%m-%d %H:%M")
     svg.add_element(f"""
     <text x="20" y="{legend_y + 9}" class="label-day" font-size="9" fill="var(--text-muted)">

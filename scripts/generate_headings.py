@@ -28,6 +28,12 @@ def generate_heading_svg(text, filepath):
         stroke: url(#heading-grad);
         stroke-width: 3px;
         stroke-linecap: round;
+        stroke-dasharray: 300;
+        stroke-dashoffset: 300;
+        animation: drawUnderline 1.2s ease-out forwards;
+    }
+    @keyframes drawUnderline {
+        to { stroke-dashoffset: 0; }
     }
     """
     
@@ -153,16 +159,32 @@ def generate_background_svg():
         font-weight: 800;
         fill: url(#text-grad);
         letter-spacing: 4px;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: bannerFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
     }
     .banner-subtitle {
         font-family: 'JetBrains Mono', -apple-system, sans-serif;
         font-size: 13px;
         fill: #8b949e;
         letter-spacing: 2px;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: bannerFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    }
+    .banner-tag {
+        opacity: 0;
+        animation: bannerFadeInSimple 0.8s ease-out 0.8s forwards;
     }
     .banner-grid {
         stroke: rgba(255, 255, 255, 0.03);
         stroke-width: 1px;
+    }
+    @keyframes bannerFadeIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bannerFadeInSimple {
+        to { opacity: 0.7; }
     }
     """
     
@@ -193,11 +215,11 @@ def generate_background_svg():
     
     <!-- Text contents -->
     <g transform="translate(45, 0)">
-        <text x="0" y="60" class="banner-title">M. HUZAFA HAFEEZ</text>
+        <text x="0" y="60" class="banner-title">M. HUIZAIFA HAFEEZ</text>
         <text x="0" y="88" class="banner-subtitle">Full Stack Engineer &amp; Problem Solver</text>
         
         <!-- Decorative tags -->
-        <text x="0" y="108" font-family="'JetBrains Mono'" font-size="10" fill="#3fb950" opacity="0.7">&lt;developer status="active" /&gt;</text>
+        <text x="0" y="108" font-family="'JetBrains Mono'" font-size="10" fill="#3fb950" class="banner-tag">&lt;developer status="active" /&gt;</text>
     </g>
     """)
     svg.save(BACKGROUND_SVG_PATH)
@@ -217,11 +239,28 @@ def generate_skills_svg():
         font-weight: 700;
         fill: var(--accent);
     }
+    .badge-group {
+        opacity: 0;
+        animation: fadeInBadge 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        transform-box: fill-box;
+        transform-origin: center;
+        transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .badge-group:hover {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 3px var(--accent)) brightness(1.1);
+        cursor: pointer;
+    }
     .badge-rect {
         fill: var(--bg-card);
         stroke: var(--border);
         stroke-width: 1px;
         rx: 4px;
+        transition: stroke 0.2s ease, fill 0.2s ease;
+    }
+    .badge-group:hover .badge-rect {
+        stroke: var(--accent);
+        fill: rgba(88, 166, 255, 0.05);
     }
     .badge-text {
         font-family: 'JetBrains Mono', -apple-system, sans-serif;
@@ -234,6 +273,10 @@ def generate_skills_svg():
         stroke-width: 0.5px;
         fill: none;
         rx: 6px;
+    }
+    @keyframes fadeInBadge {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     """
     
@@ -293,33 +336,37 @@ def generate_skills_svg():
         }
     ]
     
+    badge_index = 0
     for cat in categories:
         # Category block border
         svg.add_element(f'<rect x="{cat["x"]}" y="{cat["y"]}" width="{cat["w"]}" height="{cat["h"]}" class="cat-border" />')
         # Category Title
         svg.add_element(f'<text x="{cat["x"] + 15}" y="{cat["y"] + 24}" class="skill-cat-title">{cat["title"]}</text>')
         
-        # Draw skills pills inside category
         curr_x = cat["x"] + 15
         curr_y = cat["y"] + 38
         line_height = 24
         
         for name, color in cat["skills"]:
-            # Estimate width of badge
             text_len = len(name)
             badge_w = text_len * 7 + 26
             
-            # Wrap to next row if we exceed category width
             if curr_x + badge_w > cat["x"] + cat["w"] - 15:
                 curr_x = cat["x"] + 15
                 curr_y += line_height
                 
-            # Draw badge rect
-            svg.add_element(f'<rect x="{curr_x}" y="{curr_y}" width="{badge_w}" height="18" class="badge-rect" />')
-            # Draw dot
-            svg.add_element(f'<circle cx="{curr_x + 9}" cy="{curr_y + 9}" r="4" fill="{color}" />')
-            # Draw text
-            svg.add_element(f'<text x="{curr_x + 19}" y="{curr_y + 13}" class="badge-text">{name}</text>')
+            # Staggered animation delay
+            anim_delay = badge_index * 25
+            badge_index += 1
+            
+            # Wrap in group for animations
+            svg.add_element(f"""
+            <g class="badge-group" style="animation-delay: {anim_delay}ms;">
+                <rect x="{curr_x}" y="{curr_y}" width="{badge_w}" height="18" class="badge-rect" />
+                <circle cx="{curr_x + 9}" cy="{curr_y + 9}" r="4" fill="{color}" />
+                <text x="{curr_x + 19}" y="{curr_y + 13}" class="badge-text">{name}</text>
+            </g>
+            """)
             
             curr_x += badge_w + 8
             
@@ -327,7 +374,6 @@ def generate_skills_svg():
 
 def generate_all_headings():
     """Generates all configured heading SVGs, background, typing, and skills cards."""
-    # Create output directory
     os.makedirs(ASSETS_DIR, exist_ok=True)
     
     # Write default headings
@@ -344,7 +390,6 @@ def generate_all_headings():
     generate_heading_svg("Professional Experience", os.path.join(ASSETS_DIR, "heading-experience.svg"))
     generate_heading_svg("Technical Skills", os.path.join(ASSETS_DIR, "heading-skills.svg"))
     
-    # Generate other structural cards
     generate_typing_svg()
     generate_background_svg()
     generate_skills_svg()
