@@ -297,22 +297,6 @@ def generate_streak_svg(data):
     }
     .streak-icon-star {
         fill: var(--accent-purple);
-        transform-box: fill-box;
-        transform-origin: center;
-        animation: rotateStar 3s linear infinite;
-    }
-    
-    @keyframes slideInUp {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes flickerFlame {
-        0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 1px var(--accent-orange)); }
-        50% { transform: scale(1.08) rotate(-3deg); filter: drop-shadow(0 0 4px var(--accent-orange)); }
-    }
-    @keyframes scaleTrophy {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.06) translateY(-1px); }
     }
     @keyframes rotateStar {
         from { transform: rotate(0deg); }
