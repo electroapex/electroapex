@@ -297,164 +297,224 @@ def generate_skills_svg():
     filepath = os.path.join(ASSETS_DIR, "skills.svg")
     logger.info(f"Generating ultimate skills.svg -> {filepath}")
     
-    width = 775
-    height = 480
-    
-    extra_styles = """
-    .bg { fill: transparent; }
-    .cat-title {
-        font-family: 'Inter', -apple-system, sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        fill: #e6edf3;
-        letter-spacing: 0.5px;
-    }
-    .cat-line {
-        stroke: var(--accent);
-        stroke-width: 2px;
-        stroke-linecap: round;
-        opacity: 0.6;
-    }
-    .pill {
-        fill: #161b22;
-        stroke: #30363d;
-        stroke-width: 1px;
-        rx: 6px;
-        transition: all 0.2s ease;
-        cursor: pointer;
-    }
-    .pill-group {
-        transform-box: fill-box;
-        transform-origin: center;
-        transition: transform 0.2s ease;
-    }
-    .pill-group:hover {
-        transform: translateY(-3px);
-    }
-    .pill-group:hover .pill {
-        stroke: var(--accent);
-        fill: #21262d;
-    }
-    .pill-text {
-        font-family: 'Inter', -apple-system, sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        fill: #c9d1d9;
-    }
-    """
-    
-    charset = (
-        "FrontendBackendDatabasesMobileCross-PlatformDevOpsToolsDesignProgrammingLanguagesBuildCodeQuality"
-        "HTML5CSS3JavaScriptReactNext.jsReduxBootstrapTailwindCSSSassElectronZustandTanStackQueryjQueryVue.js"
-        "Node.jsExpress.jsDjangoLaravelRuby RailsPHPPythonMySQLPostgreSQLMongoDBSQLiteMariaDBC++C#RustViteESLintPrettier"
-        "KotlinJavaGitDockerLinuxBashFirebaseHerokuPuppeteer"
-        "FigmaIllustratorPhotoshopAdobeXD"
-        "0123456789.,:;+-_()[]/ "
-    )
-    
-    svg = SVGDocument(width, height, subset_chars=charset, extra_styles=extra_styles)
-    
-    svg.add_element(f'<rect x="0" y="0" width="{width}" height="{height}" class="bg" />')
-    
-    categories = [
-        # LEFT COLUMN
+    # ── Layout constants ──────────────────────────────────────────
+    PAD       = 18   # outer padding on all sides
+    GAP       = 14   # gap between categories in same column
+    PILL_H    = 32   # pill height
+    PILL_R    = 7    # pill corner radius
+    PILL_GAP  = 8    # horizontal gap between pills
+    ROW_GAP   = 8    # vertical gap between pill rows
+    LOGO_SZ   = 18   # logo image size
+    COL_GAP   = 20   # gap between left and right column
+    FONT_SIZE = 12   # pill text font size
+    CHAR_W    = 7.0  # approximate character width in pixels
+
+    # ── Category definitions ─────────────────────────────────────
+    LEFT_CATS = [
         {
             "title": "Programming Languages",
-            "x": 10, "y": 20, "w": 360, "h": 90,
+            "accent": "#5E6AD2",
             "skills": [
-                ("C", "#a8b9cc"), ("C++", "#00599c"), ("C#", "#239120"),
-                ("Python", "#3776ab"), ("PHP", "#777bb4"), ("Rust", "#dea584")
+                ("C","#a8b9cc"),("C++","#00599c"),("C#","#239120"),
+                ("Python","#3776ab"),("PHP","#777bb4"),("Rust","#dea584"),
             ]
         },
         {
             "title": "Frontend Development",
-            "x": 10, "y": 140, "w": 360, "h": 180,
+            "accent": "#4DA269",
             "skills": [
-                ("HTML5", "#e34f26"), ("CSS3", "#1572b6"), 
-                ("JavaScript", "#f7df1e"), ("React", "#20232a"), 
-                ("Next.js", "#ffffff"), ("Vue.js", "#4fc08d"),
-                ("jQuery", "#0769ad"), ("Redux", "#593d88"), 
-                ("Zustand", "#443e38"), ("React Router", "#ca4245"), 
-                ("TanStack Query", "#ff4154"), ("Bootstrap", "#563d7c"), 
-                ("Tailwind CSS", "#38b2ac"), ("Sass", "#cc6699"), 
-                ("Electron", "#47848f")
+                ("HTML5","#e34f26"),("CSS3","#1572b6"),("JavaScript","#f7df1e"),
+                ("React","#61dafb"),("Next.js","#ffffff"),("Vue.js","#4fc08d"),
+                ("jQuery","#0769ad"),("Redux","#764abc"),("Zustand","#5c5c5c"),
+                ("React Router","#ca4245"),("TanStack Query","#ff4154"),
+                ("Bootstrap","#7952b3"),("Tailwind CSS","#38b2ac"),
+                ("Sass","#cc6699"),("Electron","#47848f"),
             ]
         },
         {
             "title": "Build &amp; Code Quality",
-            "x": 10, "y": 350, "w": 360, "h": 90,
+            "accent": "#E36C2F",
             "skills": [
-                ("Vite", "#646cff"), ("ESLint", "#4b32c3"), ("Prettier", "#f7b93e")
+                ("Vite","#646cff"),("ESLint","#4b32c3"),("Prettier","#f7b93e"),
             ]
         },
-        
-        # RIGHT COLUMN
+    ]
+    RIGHT_CATS = [
         {
             "title": "Backend &amp; Databases",
-            "x": 400, "y": 20, "w": 360, "h": 130,
+            "accent": "#8A63D2",
             "skills": [
-                ("Node.js", "#339933"), ("Express.js", "#ffffff"), 
-                ("Django", "#092e20"), ("Laravel", "#ff2d20"), 
-                ("MySQL", "#4479a1"), ("PostgreSQL", "#316192"), 
-                ("MongoDB", "#4ea94b"), ("SQLite", "#07405e"), 
-                ("MariaDB", "#003545")
+                ("Node.js","#339933"),("Express.js","#ffffff"),("Django","#092e20"),
+                ("Laravel","#ff2d20"),("MySQL","#4479a1"),("PostgreSQL","#316192"),
+                ("MongoDB","#4ea94b"),("SQLite","#07405e"),("MariaDB","#003545"),
             ]
         },
         {
             "title": "Mobile Development",
-            "x": 400, "y": 180, "w": 360, "h": 60,
+            "accent": "#E36C2F",
             "skills": [
-                ("Kotlin", "#7f52ff"), ("Java", "#ed8b00")
+                ("Kotlin","#7f52ff"),("Java","#ed8b00"),
             ]
         },
         {
             "title": "DevOps &amp; Infrastructure",
-            "x": 400, "y": 270, "w": 360, "h": 60,
+            "accent": "#4DA269",
             "skills": [
-                ("Linux", "#fcc624"), ("Bash", "#4eaa25")
+                ("Linux","#fcc624"),("Bash","#4eaa25"),
             ]
         },
         {
             "title": "Design Tools",
-            "x": 400, "y": 360, "w": 360, "h": 90,
+            "accent": "#5E6AD2",
             "skills": [
-                ("Figma", "#f24e1e"), ("Illustrator", "#ff9a00"), 
-                ("Photoshop", "#31a8ff"), ("Adobe XD", "#ff61f6")
+                ("Figma","#f24e1e"),("Illustrator","#ff9a00"),
+                ("Photoshop","#31a8ff"),("Adobe XD","#ff61f6"),
             ]
-        }
+        },
     ]
-    
-    for cat in categories:
-        # Title and underline
-        svg.add_element(f'<text x="{cat["x"]}" y="{cat["y"] + 15}" class="cat-title">{cat["title"]}</text>')
-        svg.add_element(f'<line x1="{cat["x"]}" y1="{cat["y"] + 25}" x2="{cat["x"] + 30}" y2="{cat["y"] + 25}" class="cat-line" />')
-        
-        curr_x = cat["x"]
-        curr_y = cat["y"] + 40
-        line_height = 42
-        
-        for name, color in cat["skills"]:
-            text_len = len(name)
-            pill_w = text_len * 7.5 + 36
-            
-            if curr_x + pill_w > cat["x"] + cat["w"]:
-                curr_x = cat["x"]
-                curr_y += line_height
-                
-            b64_img = get_icon_base64(name)
-            logo_svg = f'<image href="{b64_img}" x="{curr_x + 10}" y="{curr_y + 8}" width="18" height="18" />' if b64_img else f'<circle cx="{curr_x + 19}" cy="{curr_y + 17}" r="6" fill="{color}" />'
-            
-            svg.add_element(f"""
-            <g class="pill-group">
-                <rect x="{curr_x}" y="{curr_y}" width="{pill_w}" height="34" class="pill" />
-                {logo_svg}
-                <text x="{curr_x + 36}" y="{curr_y + 22}" class="pill-text">{name}</text>
-            </g>
-            """)
-            
-            curr_x += pill_w + 12
-            
+
+    # ── Pre-fetch all icons ───────────────────────────────────────
+    all_skills = {}
+    for cat in LEFT_CATS + RIGHT_CATS:
+        for name, _ in cat["skills"]:
+            if name not in all_skills:
+                all_skills[name] = get_icon_base64(name)
+
+    # ── Helper: compute how many pixel-rows a skill list needs ───
+    def compute_cat_height(skills, col_w):
+        usable = col_w - PAD * 2
+        cx, rows = 0, 1
+        for name, _ in skills:
+            pw = max(len(name) * CHAR_W + 36, 60)
+            if cx > 0 and cx + pw > usable:
+                rows += 1
+                cx = 0
+            cx += pw + PILL_GAP
+        # title(20) + underline_gap(10) + rows*(PILL_H+ROW_GAP) - last ROW_GAP + bottom_pad(10)
+        return 20 + 10 + rows * (PILL_H + ROW_GAP) - ROW_GAP + 10
+
+    # ── Compute column widths & heights ──────────────────────────
+    TOTAL_W   = 760
+    COL_W     = (TOTAL_W - PAD * 2 - COL_GAP) // 2   # ~351px each
+
+    def col_total_h(cats):
+        h = PAD
+        for i, cat in enumerate(cats):
+            h += compute_cat_height(cat["skills"], COL_W)
+            if i < len(cats) - 1:
+                h += GAP
+        return h + PAD
+
+    left_h  = col_total_h(LEFT_CATS)
+    right_h = col_total_h(RIGHT_CATS)
+    height  = max(left_h, right_h)
+
+    # ── SVG styles ───────────────────────────────────────────────
+    extra_styles = """
+    .sk-cat-title {
+        font-family: 'JetBrains Mono', -apple-system, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        fill: #e6edf3;
+        letter-spacing: 0.3px;
+    }
+    .sk-pill {
+        fill: #0F0F11;
+        stroke: #262628;
+        stroke-width: 1px;
+    }
+    .sk-pill-text {
+        font-family: 'JetBrains Mono', -apple-system, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        fill: #c9d1d9;
+    }
+    .sk-sep {
+        stroke: #262628;
+        stroke-width: 1px;
+    }
+    """
+
+    charset = (
+        "FrontendBackendDatabasesMobileDevOpsProgrammingLanguagesBuildCodeQuality"
+        "DesignToolsInfrastructureDevelopment"
+        "HTML5CSS3JavaScriptReactNextjsReduxBootstrapTailwindCSSSassElectronZustandTanStackQueryjQueryVuejs"
+        "NodejsExpressjsDjangoLaravelPHPPythonMySQLPostgreSQLMongoDBSQLiteMariaDBCRustViteESLintPrettier"
+        "KotlinJavaGitDockerLinuxBashFirebaseHerokuPuppeteer"
+        "FigmaIllustratorPhotoshopAdobeXD"
+        "0123456789.,:;+-_&()[]/ "
+    )
+
+    svg = SVGDocument(TOTAL_W, height, subset_chars=charset, extra_styles=extra_styles)
+    svg.add_element(f'<rect x="0" y="0" width="{TOTAL_W}" height="{height}" fill="transparent" />')
+
+    # ── Vertical separator between columns ───────────────────────
+    sep_x = PAD + COL_W + COL_GAP // 2
+    svg.add_element(f'<line x1="{sep_x}" y1="{PAD}" x2="{sep_x}" y2="{height - PAD}" class="sk-sep" />')
+
+    # ── Render a column of categories ────────────────────────────
+    def render_column(cats, col_x, col_w):
+        cy = PAD
+        anim_idx = 0
+        for cat in cats:
+            accent = cat["accent"]
+            title  = cat["title"]
+
+            # Category title with accent dot
+            svg.add_element(f'<circle cx="{col_x + 4}" cy="{cy + 10}" r="3" fill="{accent}" />')
+            svg.add_element(f'<text x="{col_x + 14}" y="{cy + 15}" class="sk-cat-title">{title}</text>')
+
+            # Underline accent
+            svg.add_element(f'<line x1="{col_x}" y1="{cy + 22}" x2="{col_x + col_w}" y2="{cy + 22}" stroke="{accent}" stroke-width="0.5" opacity="0.3" />')
+
+            px = col_x
+            py = cy + 32
+            usable = col_w
+
+            for name, color in cat["skills"]:
+                pw = max(len(name) * CHAR_W + 36, 60)
+                if px > col_x and px + pw > col_x + usable:
+                    px  = col_x
+                    py += PILL_H + ROW_GAP
+
+                delay_ms = anim_idx * 35
+                b64  = all_skills.get(name)
+                logo = (f'<image href="{b64}" x="{px+8}" y="{py+7}" width="{LOGO_SZ}" height="{LOGO_SZ}" />'
+                        if b64 else
+                        f'<circle cx="{px+17}" cy="{py+{PILL_H}//2}" r="5" fill="{color}" />')
+
+                svg.add_element(f"""
+                <g>
+                    <rect x="{px}" y="{py}" width="{pw}" height="{PILL_H}" rx="{PILL_R}" class="sk-pill">
+                        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="{delay_ms}ms" fill="freeze" />
+                    </rect>
+                    {logo}
+                    <text x="{px+33}" y="{py+PILL_H//2+5}" class="sk-pill-text" opacity="0">
+                        {name}
+                        <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="{delay_ms+80}ms" fill="freeze" />
+                    </text>
+                </g>""")
+
+                px += pw + PILL_GAP
+                anim_idx += 1
+
+            # advance cy
+            rows_used = 1
+            test_px = col_x
+            for name, _ in cat["skills"]:
+                pw = max(len(name) * CHAR_W + 36, 60)
+                if test_px > col_x and test_px + pw > col_x + usable:
+                    rows_used += 1
+                    test_px = col_x
+                test_px += pw + PILL_GAP
+
+            cy += 20 + 10 + rows_used * (PILL_H + ROW_GAP) + GAP
+
+    render_column(LEFT_CATS,  PAD,            COL_W)
+    render_column(RIGHT_CATS, PAD + COL_W + COL_GAP, COL_W)
+
     svg.save(filepath)
+
 
 def generate_all_headings():
     """Generates all configured heading SVGs, background, typing, and skills cards."""
