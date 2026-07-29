@@ -434,7 +434,7 @@ def generate_skills_svg():
             ]
         },
         {
-            "title": "Build Tools & Code Quality",
+            "title": "Build Tools &amp; Code Quality",
             "x": 20, "y": 305, "w": 355, "h": 85,
             "skills": [
                 ("Vite", "#646cff"), ("Webpack", "#8dd6f9"),
@@ -442,7 +442,7 @@ def generate_skills_svg():
             ]
         },
         {
-            "title": "Backend & Databases",
+            "title": "Backend &amp; Databases",
             "x": 395, "y": 20, "w": 355, "h": 165,
             "skills": [
                 ("Node.js", "#339933"), ("Express.js", "#000000"), 
@@ -454,7 +454,7 @@ def generate_skills_svg():
             ]
         },
         {
-            "title": "Mobile & Cross-Platform",
+            "title": "Mobile &amp; Cross-Platform",
             "x": 395, "y": 200, "w": 355, "h": 85,
             "skills": [
                 ("Flutter", "#02569b"), ("Dart", "#0175c2"), 
@@ -463,7 +463,7 @@ def generate_skills_svg():
             ]
         },
         {
-            "title": "DevOps & Tools",
+            "title": "DevOps &amp; Tools",
             "x": 395, "y": 300, "w": 355, "h": 125,
             "skills": [
                 ("Git", "#f05032"), ("Docker", "#2496ed"), 
