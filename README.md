@@ -211,8 +211,11 @@
 ## <a name="analytics"></a>GitHub Analytics
 
 <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=electroapex&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00d4aa&icon_color=00d4aa&text_color=c9d1d9" alt="GitHub Stats"/>
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=electroapex&layout=compact&hide_border=true&bg_color=0d1117&title_color=00d4aa&text_color=c9d1d9" alt="Top Languages"/>
+  <!-- NOTE: the rickstaa github-readme-stats.vercel.app deployment is paused (HTTP 503 DEPLOYMENT_PAUSED), so the Stats / Top-Languages cards are dead. Replaced with live shields.io count badges using the same for-the-badge style as the Tech Stack above. -->
+  <img src="https://img.shields.io/github/followers/electroapex?label=Followers&logo=github&style=for-the-badge" height="30" alt="Followers"/>
+  <img src="https://img.shields.io/github/stars/electroapex/electroapex?label=Stars&logo=star&style=for-the-badge" height="30" alt="Stars"/>
+  <img src="https://img.shields.io/github/languages/electroapex/electroapex?logoColor=white&label=Top%20Language&style=for-the-badge" height="30" alt="Top Language"/>
+  <img src="https://img.shields.io/github/repo-size/electroapex/electroapex?label=Repo%20Size&units=kiB&style=for-the-badge" height="30" alt="Repo Size"/>
 </p>
 
 <p align="center">
@@ -230,13 +233,14 @@
 </p>
 </details>
 
-## Contribution Activity
+## <a name="activity"></a>Contribution Activity
 
 <p align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=electroapex&bg_color=0d1117&color=00d4aa&line=00d4aa&point=ffffff&area=true&hide_border=true&radius=8" alt="Contribution Graph"/>
 </p>
 
 <p align="center">
+  <!-- snake animates once the "Generate Snake" workflow has run (output branch). -->
   <img src="https://raw.githubusercontent.com/electroapex/electroapex/output/github-contribution-grid-snake-dark.svg" alt="Snake Animation"/>
 </p>
 
