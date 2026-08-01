@@ -24,6 +24,9 @@
 <img align="right" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="220px" alt="Coding"/>
 
 <p align="center">
+Full-stack &amp; DevOps engineer building production-grade software from concept to ship. I specialize in REST APIs, authentication systems, and containerized services — designing layered, secure, and scalable architectures on Node.js, React, MongoDB, Docker, and Kubernetes. Currently deep in microservices, system design, and cloud-native infrastructure.</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Design%20%E2%86%92%20Build%20%E2%86%92%20Ship-00D4AA?style=for-the-badge" height="30" alt="Design → Build → Ship">
   <img src="https://img.shields.io/badge/Node%20%C2%B7%20React%20%C2%B7%20Mongo-3FB950?style=for-the-badge" height="30" alt="Node · React · Mongo">
   <img src="https://img.shields.io/badge/Docker%20%C2%B7%20Kubernetes-2496ED?style=for-the-badge" height="30" alt="Docker · Kubernetes">
