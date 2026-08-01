@@ -14,9 +14,21 @@
 </div>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="28px" height="28px" alt="Waving" />
-  <br>
-  <h2>Hi, I'm M Huzaifa Hafeez</h2>
+  <svg viewBox="0 0 480 64" width="480" height="64" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="nameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#00D4AA" />
+        <stop offset="50%" stop-color="#e6edf3" />
+        <stop offset="100%" stop-color="#00D4AA" />
+        <animate attributeName="x1" values="0%;100%;0%" dur="5s" repeatCount="indefinite" />
+      </linearGradient>
+    </defs>
+    <text x="240" y="34" text-anchor="middle" font-family="Fira Code, monospace" font-size="30" font-weight="600" fill="url(#nameGrad)">M Huzaifa Hafeez</text>
+    <text x="240" y="56" text-anchor="middle" font-family="Fira Code, monospace" font-size="13" fill="#8b949e">Hi, I'm the developer behind this profile</text>
+  </svg>
+</div>
+
+<div align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=3200&pause=900&color=00D4AA&center=true&vCenter=true&width=560&lines=Full-Stack+Web+Developer;REST+APIs+%7C+Authentication+%7C+DevOps;Docker+%7C+Kubernetes+%7C+CI%2FCD;Building+Production-Grade+Software" alt="Typing Animation" />
   <br>
   <sub><b>Full-Stack Developer · DevOps Engineer</b></sub>
@@ -321,7 +333,7 @@ My work spans freelance engagements, product development, and open source — al
 <summary><b>Trophies & Profile Summary</b></summary>
 <br>
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=electroapex&theme=nord_dark&no-frame=true&row=2&column=4&margin-w=12&margin-h=12" alt="GitHub Trophies" />
+  <img src="https://github-profile-trophy-orcin-eta.vercel.app/?username=electroapex&theme=nord_dark&no-frame=true&row=2&column=4&margin-w=12&margin-h=12" alt="GitHub Trophies" />
 </p>
 <p align="center">
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=electroapex&theme=vue_dark" alt="Profile Summary" />
