@@ -1,13 +1,15 @@
 // tools/build-assets.js
-// Generates the single animated hero SVG as a self-contained file.
+// Generates two self-contained animated SVG assets for the profile README:
+//   - assets/hero.svg   (wave + gradient name)
+//   - assets/snake.svg  (looping snake head/glow/body + label placeholder)
 //
-// WHY a file (not inline SVG): GitHub's README sanitizer strips ALL inline
+// WHY files (not inline SVG): GitHub's README sanitizer strips ALL inline
 // <svg> markup from markdown (rect/circle/defs/animate -> 0 in rendered HTML),
 // but it renders external <img src="...svg"> WITHOUT sanitizing, and SMIL
 // <animate> keeps running inside <img>-loaded SVGs (same mechanism as the
-// contribution snake). So the animated hero is assets/hero.svg → <img>.
+// contribution snake). So both animated assets live in assets/*.svg -> <img>.
 //
-// Run: node tools/build-assets.js   → writes assets/hero.svg
+// Run: node tools/build-assets.js   -> writes assets/hero.svg, assets/snake.svg
 
 const fs = require('fs');
 const path = require('path');
@@ -48,6 +50,38 @@ function hero() {
 </svg>`;
 }
 
-const content = hero();
-fs.writeFileSync(path.join(OUT, 'hero.svg'), content);
-console.log('wrote assets/hero.svg (' + content.length + ' bytes)');
+// Animated snake: a glowing head that slides along a fixed body path, looping.
+// Self-contained (no external refs) so <img> renders it everywhere including GitHub.
+function snake() {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 540 180" width="540" height="180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="s_bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0a0d14"/>
+    </linearGradient>
+    <filter id="s_glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0">
+        <animate attributeName="stdDeviation" values="0;2.5;0" dur="2.8s" repeatCount="indefinite"/>
+      </feGaussianBlur>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.000 0.831 0 0 0 0.000 0.165 0 0 0 0.165 0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <rect width="540" height="180" rx="14" fill="url(#s_bg)"/>
+  <!-- body (static, segmented) -->
+  <path d="M90 130 Q160 70 250 90 T400 85 T500 110" stroke="#238636" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- head (glowing, slides back/forth) -->
+  <circle id="s_head" r="8" fill="#3FB950" filter="url(#s_glow)">
+    <animate attributeName="cx" values="90;500;90" dur="6s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="130;110;130" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <text x="270" y="162" text-anchor="middle" font-family="SFMono-Regular,Menlo,monospace" font-size="12" fill="#8b949e">🐍 snake</text>
+</svg>`;
+}
+
+const heroContent = hero();
+const snakeContent = snake();
+fs.writeFileSync(path.join(OUT, 'hero.svg'), heroContent);
+console.log('wrote assets/hero.svg (' + heroContent.length + ' bytes)');
+fs.writeFileSync(path.join(OUT, 'snake.svg'), snakeContent);
+console.log('wrote assets/snake.svg (' + snakeContent.length + ' bytes)');

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 540 180" width="540" height="180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="s_bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0a0d14"/>
+    </linearGradient>
+    <filter id="s_glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0">
+        <animate attributeName="stdDeviation" values="0;2.5;0" dur="2.8s" repeatCount="indefinite"/>
+      </feGaussianBlur>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.000 0.831 0 0 0 0.000 0.165 0 0 0 0.165 0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <rect width="540" height="180" rx="14" fill="url(#s_bg)"/>
+  <!-- body (static, segmented) -->
+  <path d="M90 130 Q160 70 250 90 T400 85 T500 110" stroke="#238636" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- head (glowing, slides back/forth) -->
+  <circle id="s_head" r="8" fill="#3FB950" filter="url(#s_glow)">
+    <animate attributeName="cx" values="90;500;90" dur="6s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="130;110;130" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <text x="270" y="162" text-anchor="middle" font-family="SFMono-Regular,Menlo,monospace" font-size="12" fill="#8b949e">🐍 snake</text>
+</svg>

@@ -205,8 +205,8 @@
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=electroapex&bg_color=0d1117&color=00d4aa&line=00d4aa&point=ffffff&area=true&hide_border=true&radius=8" alt="Contribution Graph"/>
 </p>
 <p align="center">
-  <!-- Snake animates once the "Generate Snake" workflow has run (writes to `output` branch). -->
-  <img src="https://raw.githubusercontent.com/electroapex/electroapex/output/github-contribution-grid-snake-dark.svg" alt="Snake Animation"/>
+  <!-- Custom animated snake (renders immediately); the "Generate Snake" workflow can swap this for the contribution-mapped version on the `output` branch. -->
+  <img src="https://raw.githubusercontent.com/electroapex/electroapex/main/assets/snake.svg" alt="Snake Animation"/>
 </p>
 
 ---
