@@ -145,9 +145,9 @@ function button(b) {
 // ===== Stat cards (baked real counts: Followers 1, Repos 2) =====
 const STATS_W = 208, STATS_H = 48;
 const stats = [
-  { name: 'views', label: 'PROFILE VIEWS', value: '—', color: '#00D4AA' },
-  { name: 'followers', label: 'FOLLOWERS', value: '1', color: '#58A6FF' },
-  { name: 'repos', label: 'REPOSITORIES', value: '2', color: '#FF9E64' },
+  { name: 'views', label: 'PROFILE VIEWS', value: '—', abbr: 'VI', color: '#00D4AA' },   // no public counter w/o img
+  { name: 'followers', label: 'FOLLOWERS', value: '1', abbr: 'FL', color: '#58A6FF' },
+  { name: 'repos', label: 'REPOSITORIES', value: '2', abbr: 'RE', color: '#FF9E64' },
 ];
 function statCard(s) {
   return wrap(`stat_${s.name}`, STATS_W, STATS_H,
@@ -156,8 +156,10 @@ function statCard(s) {
 <rect width="${STATS_W}" height="${STATS_H}" rx="24" fill="url(#bg)"/>
 <rect x="1" y="1" width="206" height="46" rx="23" fill="none" stroke="${s.color}" stroke-opacity="0.5" stroke-width="1.1"/>
 <rect width="${STATS_W}" height="24" rx="24" fill="url(#sh)"/>
-<circle cx="30" cy="24" r="7" fill="none" stroke="${s.color}" stroke-width="1.4"><animate attributeName="r" values="6;8;6" dur="2.6s" repeatCount="indefinite"/></circle>
-<text x="52" y="24" fill="#8b949e" font-size="12.5" letter-spacing="0.6" font-family="'Segoe UI',sans-serif">${s.label}</text>
+<circle cx="30" cy="24" r="11" fill="none" stroke="${s.color}" stroke-width="1.8"><animate attributeName="r" values="10;14;10" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0.25;0.8" dur="2.6s" repeatCount="indefinite"/></circle>
+<circle cx="30" cy="24" r="4.5" fill="${s.color}"/>
+<text x="30" y="28" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700" font-family="'Segoe UI',sans-serif">${s.abbr}</text>
+<text x="54" y="24" fill="#8b949e" font-size="12.5" letter-spacing="0.6" font-family="'Segoe UI',sans-serif">${s.label}</text>
 <text x="200" y="42" text-anchor="end" fill="#e6edf3" font-size="12" font-weight="600" font-family="'Segoe UI',sans-serif">${s.value}</text>`);
 }
 
@@ -180,7 +182,7 @@ function nav() {
     const d = `<rect x="${x}" y="2" width="124" height="36" rx="18" fill="${n.color}" opacity="0.12"/>`;
     const mid = `<rect x="${x}" y="0" width="${W}" height="${H}" rx="64" fill="url(#ng${i})"/>`;
     const stroke = `<rect x="${x-1}" y="1" width="${W-2}" height="${H-2}" rx="63" fill="none" stroke="${n.color}" stroke-opacity="0.5" stroke-width="1.1"/>`;
-    const dot = `<circle cx="${x+24}" cy="20" r="3" fill="${n.color}"/>`;
+    const dot = `<circle cx="${x+24}" cy="20" r="6" fill="none" stroke="${n.color}" stroke-opacity="0.35" stroke-width="1"><animate attributeName="r" values="5;8;5" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.1;0.35" dur="2.8s" repeatCount="indefinite"/></circle><circle cx="${x+24}" cy="20" r="4" fill="${n.color}"/>`;
     const txt = `<text x="${x+W/2}" y="25" text-anchor="middle" fill="#e6edf3" font-size="12.5" letter-spacing="1.2" font-family="'Segoe UI',sans-serif">${n.label}</text>`;
     x += W + gap;
     return [d, mid, stroke, dot, txt].join('');
